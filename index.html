@@ -44,7 +44,7 @@
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 600px;
+            max-width: 700px;
             padding: 0 40px;
         }
 
@@ -67,7 +67,7 @@
             margin-bottom: 20px; 
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 14px;
         }
 
         h2 {
@@ -85,8 +85,8 @@
         }
 
         .thumb {
-            width: 26px;
-            height: 26px;
+            width: 30px;
+            height: 30px;
             flex-shrink: 0;
         }
 
@@ -99,6 +99,25 @@
             color: var(--accent); 
             margin-left: 5px;
             font-size: 0.7rem;
+        }
+
+        .item-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            justify-content: center;
+        }
+
+        .item-title {
+            font-size: 0.85rem;
+            color: var(--highlight);
+            white-space: nowrap;
+        }
+
+        .item-desc {
+            font-size: 0.75rem;
+            color: var(--accent);
+            white-space: nowrap;
         }
 
         .project-link {
@@ -135,7 +154,7 @@
 
 <div class="container">
     <header>
-        <h1>MAJOCK BIM</h1>
+        <h1>Majock Bim</h1>
         <p class="handle">@majockbim</p>
     </header>
 
@@ -143,11 +162,17 @@
         <h2>currently</h2>
         <div class="row">
             <img src="assets/mcmaster.png" class="thumb" alt="">
-            <div class="item">EE + CS <span>@ mcmaster university</span></div>
+            <div class="item-stack">
+                <div class="item-title">McMaster University</div>
+                <div class="item-desc">studying engineering</div>
+            </div>
         </div>
         <div class="row">
             <img src="assets/exo-trans.png" class="thumb" alt="">
-            <div class="item">embedded software engineer <span>@ mac exo</span></div>
+            <div class="item-stack">
+                <div class="item-title">Embedded Software Engineer</div>
+                <div class="item-desc">sensor fusion & CANbus @macexo</div>
+            </div>
         </div>
     </section>
 
@@ -155,11 +180,17 @@
         <h2>previously</h2>
         <div class="row">
             <img src="assets/la-trans.png" class="thumb" alt="">
-            <div class="item">LA Hacks 2026 <span>/ physiotherapy wearable</span></div>
+            <div class="item-stack">
+                <div class="item-title">LA Hacks 2026</div>
+                <div class="item-desc">built <span><u>physio</u></span></div>
+            </div>
         </div>
         <div class="row">
             <img src="assets/re.png" class="thumb" alt="">
-            <div class="item">resource thrift <span>/ operations</span></div>
+            <div class="item-stack">
+                <div class="item-title">resource thrift</div>
+                <div class="item-desc">operations & leadership</div>
+            </div>
         </div>
     </section>
 
@@ -167,20 +198,31 @@
         <h2>Projects</h2>
         <div class="row">
             <img src="assets/physio.png" class="thumb" alt="">
-            <div class="item project-link">physio</div>
+            <div class="item-stack">
+                <div class="item-title">physio</div>
+                <div class="item-desc">desc</div>
+            </div> 
         </div>
         <div class="row">
             <img src="assets/term-trans.png" class="thumb" alt="">
-            <div class="item project-link">terminal equalizer</div>
+            <div class="item-stack">
+                <div class="item-title">terminal equalizer</div>
+                <div class="item-desc">cpp17</div>
+            </div> 
         </div>
         <div class="row">
             <img src="https://via.placeholder.com/18" class="thumb" alt="">
-            <div class="item project-link">robotic arm controller</div>
+            <div class="item-stack">
+                <div class="item-title">robotic arm</div>
+                <div class="item-desc">opencv</div>
+            </div>    
         </div>
         <div class="row">
             <img src="assets/mag-invert-trans.png" class="thumb" alt="">
-            <div class="item project-link">magnetism</div>
-        </div>
+            <div class="item-stack">
+                <div class="item-title">magnetism</div>
+                <div class="item-desc">go,cpp,next.js</div>
+            </div>        </div>
     </section>
 
     <nav>
