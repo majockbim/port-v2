@@ -129,22 +129,23 @@
             color: var(--highlight);
         }
 
-        nav { 
-            margin-top: 35px; 
-            display: flex; 
-            gap: 20px; 
+        nav {
+            margin-top: 35px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
         }
 
-        nav a {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.8rem;
-            border-bottom: 1px solid var(--accent);
+        .nav-icon {
+            width: 28px;
+            height: 28px;
+            image-rendering: pixelated;
+            opacity: 0.6;
+            transition: opacity 0.15s;
         }
 
-        nav a:hover { 
-            color: var(--highlight); 
-            border-bottom-color: var(--highlight);
+        .nav-icon:hover {
+            opacity: 1;
         }
     </style>
 </head>
@@ -226,9 +227,18 @@
     </section>
 
     <nav>
-        <a href="https://github.com/majockbim">GitHub</a>
-        <a href="#">LinkedIn</a>
-        <a href="#">Email</a>
+        <a href="https://github.com/majockbim" target="_blank">
+            <img src="assets/git.png" class="nav-icon" alt="GitHub">
+        </a>
+        <a href="https://www.linkedin.com/in/majockbim/" target="_blank">
+            <img src="assets/in.png" class="nav-icon" alt="LinkedIn">
+        </a>
+        <a href="https://x.com/majockbim" target="_blank">
+            <img src="assets/X.png" class="nav-icon" alt="X">
+        </a>
+        <a href="mailto:your@email.com" target="_blank">
+            <img src="assets/mail.png" class="nav-icon" alt="Email">
+        </a>
     </nav>
 </div>
 
