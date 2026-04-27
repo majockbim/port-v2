@@ -129,19 +129,32 @@
             color: var(--highlight);
         }
 
-        nav {
-            margin-top: 35px;
+        .nav-divider {
+            margin-top: 26px;
+            padding-top: 14px;
+            border-top: 1px solid #2a2a2a;
             display: flex;
-            gap: 20px;
+            justify-content: space-between;
             align-items: center;
         }
 
         .nav-icon {
-            width: 28px;
-            height: 28px;
-            image-rendering: pixelated;
-            opacity: 0.6;
-            transition: opacity 0.15s;
+        width: 20px;
+        height: 20px;
+        image-rendering: pixelated;
+        opacity: 0.6;
+        transition: opacity 0.15s;
+        }
+
+        .copyright {
+            font-size: 0.65rem;
+            color: var(--accent);
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
         }
 
         .nav-icon:hover {
@@ -171,7 +184,7 @@
         <div class="row">
             <img src="assets/exo-trans.png" class="thumb" alt="">
             <div class="item-stack">
-                <div class="item-title">Embedded Software Engineer</div>
+                <div class="item-title">embedded software engineer</div>
                 <div class="item-desc">sensor fusion & CANbus @macexo</div>
             </div>
         </div>
@@ -201,45 +214,48 @@
             <img src="assets/physio.png" class="thumb" alt="">
             <div class="item-stack">
                 <div class="item-title">physio</div>
-                <div class="item-desc">desc</div>
+                <div class="item-desc">edge AI-enabled stroke rehab sleeve</div>
             </div> 
         </div>
         <div class="row">
             <img src="assets/term-trans.png" class="thumb" alt="">
             <div class="item-stack">
                 <div class="item-title">terminal equalizer</div>
-                <div class="item-desc">cpp17</div>
+                <div class="item-desc">spectral visualizer in your termial</div>
             </div> 
         </div>
         <div class="row">
             <img src="https://via.placeholder.com/18" class="thumb" alt="">
             <div class="item-stack">
                 <div class="item-title">robotic arm</div>
-                <div class="item-desc">opencv</div>
+                <div class="item-desc">control arm via serial cmds or opencv</div>
             </div>    
         </div>
         <div class="row">
             <img src="assets/mag-invert-trans.png" class="thumb" alt="">
             <div class="item-stack">
                 <div class="item-title">magnetism</div>
-                <div class="item-desc">go,cpp,next.js</div>
+                <div class="item-desc">physics sim with C++, go, & next.js</div>
             </div>        </div>
     </section>
 
-    <nav>
-        <a href="https://github.com/majockbim" target="_blank">
-            <img src="assets/git.png" class="nav-icon" alt="GitHub">
-        </a>
-        <a href="https://www.linkedin.com/in/majockbim/" target="_blank">
-            <img src="assets/in.png" class="nav-icon" alt="LinkedIn">
-        </a>
-        <a href="https://x.com/majockbim" target="_blank">
-            <img src="assets/X.png" class="nav-icon" alt="X">
-        </a>
-        <a href="mailto:your@email.com" target="_blank">
-            <img src="assets/mail.png" class="nav-icon" alt="Email">
-        </a>
-    </nav>
+    <div class="nav-divider">
+        <nav>
+            <a href="https://github.com/majockbim" target="_blank">
+                <img src="assets/git.png" class="nav-icon" alt="GitHub">
+            </a>
+            <a href="https://www.linkedin.com/in/majockbim/" target="_blank">
+                <img src="assets/in.png" class="nav-icon" alt="LinkedIn">
+            </a>
+            <a href="https://x.com/majockbim" target="_blank">
+                <img src="assets/X.png" class="nav-icon" alt="X">
+            </a>
+            <a href="bmajock@gmail.com" target="_blank">
+                <img src="assets/mail.png" class="nav-icon" alt="Email">
+            </a>
+        </nav>
+        <span class="copyright">© 2026 Majock Bim</span>
+    </div>
 </div>
 
 <script>
