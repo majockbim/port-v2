@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Majock Bim</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'MinecraftCustom';
+            src: url('/_next/static/media/MinecraftRegular_Bmg3-s.p.ce778330.otf') format('opentype');
+        }
+
+        :root {
+            --bg: #000;
+            --dim-binary: #1c1c1c;
+            --text: #a0a0a0;
+            --accent: #444;
+            --highlight: #fff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body, html {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'MinecraftCustom', 'Press Start 2P', monospace;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 1.1;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 600px;
+            padding: 0 40px;
+        }
+
+        header { 
+            margin-bottom: 25px; 
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+        }
+
+        header h1 {
+            font-size: 1.25rem;
+            color: var(--highlight);
+            font-weight: 400;
+        }
+
+        .handle { color: var(--accent); font-size: 0.7rem; }
+
+        section { 
+            margin-bottom: 20px; 
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        h2 {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 400;
+            letter-spacing: 0.1rem;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .thumb {
+            width: 18px;
+            height: 18px;
+            background: #111;
+            border: 1px solid var(--accent);
+            flex-shrink: 0;
+        }
+
+        .item { 
+            font-size: 0.85rem; 
+            white-space: nowrap;
+        }
+
+        .item span { 
+            color: var(--accent); 
+            margin-left: 5px;
+            font-size: 0.7rem;
+        }
+
+        .project-link {
+            cursor: pointer;
+            transition: color 0.1s;
+        }
+
+        .project-link:hover {
+            color: var(--highlight);
+        }
+
+        nav { 
+            margin-top: 35px; 
+            display: flex; 
+            gap: 20px; 
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.8rem;
+            border-bottom: 1px solid var(--accent);
+        }
+
+        nav a:hover { 
+            color: var(--highlight); 
+            border-bottom-color: var(--highlight);
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="binaryCanvas"></canvas>
+
+<div class="container">
+    <header>
+        <h1>MAJOCK BIM</h1>
+        <p class="handle">@majockbim</p>
+    </header>
+
+    <section>
+        <h2>Currently</h2>
+        <div class="row">
+            <img src="https://via.placeholder.com/18" class="thumb" alt="">
+            <div class="item">Embedded Software Engineer <span>@ McMaster Exoskeleton</span></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Previously</h2>
+        <div class="row">
+            <img src="https://via.placeholder.com/18" class="thumb" alt="">
+            <div class="item">LA Hacks 2026 <span>/ Physio Wearable</span></div>
+        </div>
+        <div class="row">
+            <img src="https://via.placeholder.com/18" class="thumb" alt="">
+            <div class="item">ReSource Thrift <span>/ Operations</span></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Projects</h2>
+        <div class="row">
+            <img src="https://via.placeholder.com/18" class="thumb" alt="">
+            <div class="item project-link">physio</div>
+        </div>
+        <div class="row">
+            <img src="https://via.placeholder.com/18" class="thumb" alt="">
+            <div class="item project-link">magnetism</div>
+        </div>
+        <div class="row">
+            <img src="https://via.placeholder.com/18" class="thumb" alt="">
+            <div class="item project-link">robotic-arm</div>
+        </div>
+    </section>
+
+    <nav>
+        <a href="https://github.com/majockbim">GitHub</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Email</a>
+    </nav>
+</div>
+
+<script>
+    const canvas = document.getElementById('binaryCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const fontSize = 14;
+    const columns = Math.ceil(canvas.width / fontSize);
+    const rows = Math.ceil(canvas.height / fontSize);
+    
+    const bits = [];
+    const density = 0.015; 
+
+    for (let c = 0; c < columns; c++) {
+        for (let r = 0; r < rows; r++) {
+            if (Math.random() < density) {
+                bits.push({
+                    x: c,
+                    targetY: r,
+                    y: -(Math.random() * rows) - 5,
+                    maxSpeed: 0.6 + Math.random() * 0.6,
+                    char: Math.floor(Math.random() * 2).toString()
+                });
+            }
+        }
+    }
+
+    function draw() {
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = "#1c1c1c"; 
+        ctx.font = fontSize + "px monospace";
+
+        let stillMoving = false;
+
+        for (let i = 0; i < bits.length; i++) {
+            let b = bits[i];
+            let dist = b.targetY - b.y;
+
+            if (dist > 0.05) {
+                let vel = dist * 0.06;
+                if (vel > b.maxSpeed) vel = b.maxSpeed;
+                
+                b.y += vel;
+                stillMoving = true;
+
+                if (vel > 0.15 && Math.random() < 0.1) {
+                    b.char = Math.floor(Math.random() * 2).toString();
+                }
+            } else {
+                b.y = b.targetY;
+            }
+
+            if (b.y > -1) {
+                ctx.fillText(b.char, b.x * fontSize, b.y * fontSize);
+            }
+        }
+
+        if (stillMoving) {
+            requestAnimationFrame(draw);
+        }
+    }
+
+    requestAnimationFrame(draw);
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+</script>
+</body>
+</html>
