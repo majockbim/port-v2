@@ -235,6 +235,17 @@
         .side-counter span {
             color: #666;
         }
+
+        .soon-label {
+            position: fixed;
+            font-size: 0.65rem;
+            color: var(--accent);
+            letter-spacing: 0.1rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 10;
+        }
     </style>
 </head>
 <body>
@@ -261,12 +272,16 @@
                 <div class="item-title">McMaster University</div>
                 <div class="item-desc">studying engineering</div>
             </div>
+            <div class="soon-label">graduating 2029</div>
         </div>
         <div class="row">
             <img src="assets/exo-trans.png" class="thumb" alt="">
             <div class="item-stack">
                 <div class="item-title">embedded software engineer</div>
                 <div class="item-desc">sensor fusion & CANbus @macexo</div>
+            </div>
+            <div class="row-preview">
+                <img src="assets/preview/exo.png" alt="">
             </div>
         </div>
     </section>
@@ -278,6 +293,9 @@
             <div class="item-stack">
                 <div class="item-title">LA Hacks 2026</div>
                 <div class="item-desc">built <span><u>physio</u></span></div>
+            </div>
+            <div class="row-preview">
+                <img src="assets/preview/LAHacks.png" alt="">
             </div>
         </div>
         <div class="row">
@@ -299,7 +317,7 @@
                     <div class="item-desc">edge AI-enabled stroke rehab sleeve</div>
                 </div>
                 <div class="row-preview">
-                    <img src="https://media.istockphoto.com/id/485371557/photo/twilight-at-spirit-island.jpg?s=612x612&w=0&k=20&c=FSGliJ4EKFP70Yjpzso0HfRR4WwflC6GKfl4F3Hj7fk=" alt="">
+                    <img src="assets/preview/physio.png" alt="">
                 </div>
             </div>
         </a>
@@ -310,6 +328,9 @@
                     <div class="item-title">terminal equalizer</div>
                     <div class="item-desc">spectral visualizer in your terminal</div>
                 </div>
+                <div class="row-preview">
+                    <img src="assets/preview/equalizer.png" alt="">
+                </div>
             </div>
         </a>
         <a href="#" target="_blank" style="text-decoration:none;">
@@ -318,6 +339,9 @@
                 <div class="item-stack">
                     <div class="item-title">robotic arm</div>
                     <div class="item-desc">control arm via serial cmds or opencv</div>
+                </div>
+                <div class="row-preview">
+                    <img src="assets/preview/robot.png" alt="">
                 </div>
             </div>
         </a>
@@ -328,6 +352,7 @@
                     <div class="item-title">magnetism</div>
                     <div class="item-desc">physics sim with C++, go, & next.js</div>
                 </div>
+            <div class="soon-label">← soon</div>
             </div>
         </a>
     </section>
@@ -442,20 +467,29 @@
 
     document.querySelectorAll('.row').forEach(row => {
         const preview = row.querySelector('.row-preview');
-        if (!preview) return;
+        const soon = row.querySelector('.soon-label');
 
         row.addEventListener('mouseenter', () => {
             const container = document.querySelector('.container');
             const containerRect = container.getBoundingClientRect();
             const rowRect = row.getBoundingClientRect();
 
-            preview.style.left = (containerRect.right - 12) + 'px'; /* how close to row */
-            preview.style.top = rowRect.top + 'px';
-            preview.style.opacity = '1';
+            if (preview) {
+                preview.style.left = (containerRect.right + 8) + 'px';
+                preview.style.top = rowRect.top + 'px';
+                preview.style.opacity = '1';
+            }
+
+            if (soon) {
+                soon.style.left = (containerRect.right - 12) + 'px'; /* -12 for dist from row */
+                soon.style.top = (rowRect.top + rowRect.height / 2 - 6) + 'px';
+                soon.style.opacity = '1';
+            }
         });
 
         row.addEventListener('mouseleave', () => {
-            preview.style.opacity = '0';
+            if (preview) preview.style.opacity = '0';
+            if (soon) soon.style.opacity = '0';
         });
     });
 </script>
