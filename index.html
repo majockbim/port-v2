@@ -434,25 +434,32 @@
     canvas.height = window.innerHeight;
     
     const fontSize = 14;
-    const columns = Math.ceil(canvas.width / fontSize);
-    const rows = Math.ceil(canvas.height / fontSize);
+    let bits = [];
     
-    const bits = [];
-    const density = 0.015; 
+    function initBits() {
+        bits = [];
+        
+        const columns = Math.ceil(canvas.width / fontSize);
+        const rows = Math.ceil(canvas.height / fontSize);
+        
+        const density = window.innerWidth < 768 ? 0.04 : 0.015; 
 
-    for (let c = 0; c < columns; c++) {
-        for (let r = 0; r < rows; r++) {
-            if (Math.random() < density) {
-                bits.push({
-                    x: c,
-                    targetY: r,
-                    y: -(Math.random() * rows) - 5,
-                    maxSpeed: 0.6 + Math.random() * 0.6,
-                    char: Math.floor(Math.random() * 2).toString()
-                });
+        for (let c = 0; c < columns; c++) {
+            for (let r = 0; r < rows; r++) {
+                if (Math.random() < density) {
+                    bits.push({
+                        x: c,
+                        targetY: r,
+                        y: -(Math.random() * rows) - 5,
+                        maxSpeed: 0.6 + Math.random() * 0.6,
+                        char: Math.floor(Math.random() * 2).toString()
+                    });
+                }
             }
         }
     }
+
+    initBits();
 
     function draw() {
         ctx.fillStyle = "black";
@@ -513,6 +520,10 @@
     window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+
+        initBits();
+
+        requestAnimationFrame(draw);
     });
 
     document.querySelectorAll('.row').forEach(row => {
@@ -564,10 +575,8 @@
         });
     }
 
-    // fire on page load
     track('visit');
 
-    // track all row clicks
     document.querySelectorAll('.row').forEach(el => {
         el.addEventListener('click', () => {
             const label = el.querySelector('.item-title')?.textContent || 'unknown';
