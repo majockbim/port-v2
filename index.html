@@ -82,6 +82,37 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            padding: 6px 8px;
+            margin: -6px -8px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .row:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.15), inset 0 0 8px rgba(255, 255, 255, 0.04);
+        }
+
+        .row:hover .item-title {
+            color: #fff;
+            text-shadow: 0 0 6px rgba(255,255,255,0.5);
+        }
+
+        .row:hover .item-desc {
+            color: #888;
+        }
+
+        .counter {
+            font-size: 0.6rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            letter-spacing: 0.03rem;
+        }
+
+        .counter span {
+            color: #666;
         }
 
         .thumb {
@@ -160,11 +191,34 @@
         .nav-icon:hover {
             opacity: 1;
         }
+
+        .side-counter {
+        position: fixed;
+        left: 100px;
+        top: 38%;
+        transform: translateY(-50%) rotate(-17deg);
+        transform-origin: center center;
+        font-size: 0.5rem;
+        color: var(--accent);
+        white-space: nowrap;
+        letter-spacing: 0.05rem;
+        z-index: 1;
+        }
+
+        .side-counter span {
+            color: #666;
+        }
     </style>
 </head>
 <body>
 
 <canvas id="binaryCanvas"></canvas>
+
+<div class="side-counter">
+    i started programming<br>
+    <span id="prog-counter">—</span> ago
+</div>
+
 
 <div class="container">
     <header>
@@ -210,33 +264,42 @@
 
     <section>
         <h2>Projects</h2>
-        <div class="row">
-            <img src="assets/physio.png" class="thumb" alt="">
-            <div class="item-stack">
-                <div class="item-title">physio</div>
-                <div class="item-desc">edge AI-enabled stroke rehab sleeve</div>
-            </div> 
-        </div>
-        <div class="row">
-            <img src="assets/term-trans.png" class="thumb" alt="">
-            <div class="item-stack">
-                <div class="item-title">terminal equalizer</div>
-                <div class="item-desc">spectral visualizer in your termial</div>
-            </div> 
-        </div>
-        <div class="row">
-            <img src="https://via.placeholder.com/18" class="thumb" alt="">
-            <div class="item-stack">
-                <div class="item-title">robotic arm</div>
-                <div class="item-desc">control arm via serial cmds or opencv</div>
-            </div>    
-        </div>
-        <div class="row">
-            <img src="assets/mag-invert-trans.png" class="thumb" alt="">
-            <div class="item-stack">
-                <div class="item-title">magnetism</div>
-                <div class="item-desc">physics sim with C++, go, & next.js</div>
-            </div>        </div>
+        <a href="#" target="_blank" style="text-decoration:none;">
+            <div class="row">
+                <img src="assets/physio.png" class="thumb" alt="">
+                <div class="item-stack">
+                    <div class="item-title">physio</div>
+                    <div class="item-desc">edge AI-enabled stroke rehab sleeve</div>
+                </div>
+            </div>
+        </a>
+        <a href="#" target="_blank" style="text-decoration:none;">
+            <div class="row">
+                <img src="assets/term-trans.png" class="thumb" alt="">
+                <div class="item-stack">
+                    <div class="item-title">terminal equalizer</div>
+                    <div class="item-desc">spectral visualizer in your terminal</div>
+                </div>
+            </div>
+        </a>
+        <a href="#" target="_blank" style="text-decoration:none;">
+            <div class="row">
+                <img src="https://via.placeholder.com/18" class="thumb" alt="">
+                <div class="item-stack">
+                    <div class="item-title">robotic arm</div>
+                    <div class="item-desc">control arm via serial cmds or opencv</div>
+                </div>
+            </div>
+        </a>
+        <a href="#" target="_blank" style="text-decoration:none;">
+            <div class="row">
+                <img src="assets/mag-invert-trans.png" class="thumb" alt="">
+                <div class="item-stack">
+                    <div class="item-title">magnetism</div>
+                    <div class="item-desc">physics sim with C++, go, & next.js</div>
+                </div>
+            </div>
+        </a>
     </section>
 
     <div class="nav-divider">
@@ -322,6 +385,23 @@
             requestAnimationFrame(draw);
         }
     }
+
+    function updateCounter() {
+    const start = new Date('2025-05-03T00:00:00');
+    const now = new Date();
+    const diff = Math.floor((now - start) / 1000);
+
+    const days = Math.floor(diff / 86400);
+    const hours = Math.floor((diff % 86400) / 3600);
+    const mins = Math.floor((diff % 3600) / 60);
+    const secs = diff % 60;
+
+    document.getElementById('prog-counter').textContent =
+        `${days}d ${hours}h ${mins}m ${secs}s`;
+    }
+
+    updateCounter();
+    setInterval(updateCounter, 1000);
 
     requestAnimationFrame(draw);
 
