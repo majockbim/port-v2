@@ -88,14 +88,41 @@ setInterval(updateCounter, 1000);
 
 requestAnimationFrame(draw);
 
+function updateSponsorPosition() {
+    const sponsor = document.querySelector('.pcbway-sponsor');
+    const physio = document.querySelector('.physio-row');
+    
+    if (sponsor && physio) {
+        const physioRect = physio.getBoundingClientRect();
+        
+        if (window.innerWidth <= 1100) {
+            sponsor.style.display = 'none';
+        } else {
+            sponsor.style.display = 'flex';
+            // Stop tip exactly at the row's left edge
+            // SVG is 74px wide, tip is at 71px. Offset by 3px.
+            sponsor.style.left = (physioRect.left + 3) + 'px';
+            sponsor.style.top = (physioRect.top + physioRect.height / 2) + 'px';
+            sponsor.style.transform = 'translate(-100%, -50%)';
+        }    }
+}
+
+updateSponsorPosition();
+window.addEventListener('scroll', updateSponsorPosition);
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
     initBits();
-
+    updateSponsorPosition();
     requestAnimationFrame(draw);
 });
+
+// Fix initialization glitch: ensure position is calculated after full layout/fonts/images load
+window.addEventListener('load', updateSponsorPosition);
+// Extra insurance for late layout shifts
+setTimeout(updateSponsorPosition, 100);
+setTimeout(updateSponsorPosition, 500);
 
 document.querySelectorAll('.row').forEach(row => {
     const preview = row.querySelector('.row-preview');
