@@ -118,11 +118,23 @@ window.addEventListener('resize', () => {
     requestAnimationFrame(draw);
 });
 
-// Fix initialization glitch: ensure position is calculated after full layout/fonts/images load
+// Production fix: Use ResizeObserver to catch ANY layout shift (fonts loading, images rendering)
+const layoutObserver = new ResizeObserver(() => {
+    updateSponsorPosition();
+});
+
+const containerToWatch = document.querySelector('.container');
+if (containerToWatch) {
+    layoutObserver.observe(containerToWatch);
+}
+
+// Ensure positioning is perfect once the custom fonts are ready
+if (document.fonts) {
+    document.fonts.ready.then(updateSponsorPosition);
+}
+
+// Fallback for full page load
 window.addEventListener('load', updateSponsorPosition);
-// Extra insurance for late layout shifts
-setTimeout(updateSponsorPosition, 100);
-setTimeout(updateSponsorPosition, 500);
 
 document.querySelectorAll('.row').forEach(row => {
     const preview = row.querySelector('.row-preview');
