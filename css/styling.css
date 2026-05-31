@@ -358,8 +358,8 @@ z-index: 1;
     filter: drop-shadow(0 0 2px);
 }
 
-/* PCBWay Sponsor Element */
-.pcbway-sponsor {
+/* PBW Element */
+.pbw-collab {
     position: fixed;
     display: flex;
     flex-direction: row;
@@ -372,11 +372,11 @@ z-index: 1;
     pointer-events: auto;
 }
 
-.pcbway-sponsor:hover {
+.pbw-collab:hover {
     opacity: 1;
 }
 
-.sponsor-text {
+.pbw-text {
     font-size: 0.55rem;
     color: var(--accent);
     letter-spacing: 0.05rem;
@@ -384,7 +384,7 @@ z-index: 1;
     transition: color 0.2s;
 }
 
-.pcbway-logo {
+.pbw-img {
     height: 18px;
     width: auto;
     filter: drop-shadow(0 0 1px #00ff0066);
@@ -392,15 +392,15 @@ z-index: 1;
     transition: opacity 0.2s, filter 0.2s;
 }
 
-.pcbway-sponsor svg {
+.pbw-collab svg {
     flex-shrink: 0;
 }
 
-.pcbway-sponsor:hover .pcbway-logo {
+.pbw-collab:hover .pbw-img {
     opacity: 1;
     filter: drop-shadow(0 0 2px #00ff00);
 }
 
-.pcbway-sponsor:hover .sponsor-text {
+.pbw-collab:hover .pbw-text {
     color: var(--highlight);
 }

@@ -88,39 +88,39 @@ setInterval(updateCounter, 1000);
 
 requestAnimationFrame(draw);
 
-function updateSponsorPosition() {
-    const sponsor = document.querySelector('.pcbway-sponsor');
+function updatePartnerPosition() {
+    const partner = document.querySelector('.pbw-collab');
     const physio = document.querySelector('.physio-row');
     
-    if (sponsor && physio) {
+    if (partner && physio) {
         const physioRect = physio.getBoundingClientRect();
         
         if (window.innerWidth <= 1100) {
-            sponsor.style.display = 'none';
+            partner.style.display = 'none';
         } else {
-            sponsor.style.display = 'flex';
+            partner.style.display = 'flex';
             // Stop tip exactly at the row's left edge
             // SVG is 74px wide, tip is at 71px. Offset by 3px.
-            sponsor.style.left = (physioRect.left + 3) + 'px';
-            sponsor.style.top = (physioRect.top + physioRect.height / 2) + 'px';
-            sponsor.style.transform = 'translate(-100%, -50%)';
+            partner.style.left = (physioRect.left + 3) + 'px';
+            partner.style.top = (physioRect.top + physioRect.height / 2) + 'px';
+            partner.style.transform = 'translate(-100%, -50%)';
         }    }
 }
 
-updateSponsorPosition();
-window.addEventListener('scroll', updateSponsorPosition);
+updatePartnerPosition();
+window.addEventListener('scroll', updatePartnerPosition);
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
     initBits();
-    updateSponsorPosition();
+    updatePartnerPosition();
     requestAnimationFrame(draw);
 });
 
 // Production fix: Use ResizeObserver to catch ANY layout shift (fonts loading, images rendering)
 const layoutObserver = new ResizeObserver(() => {
-    updateSponsorPosition();
+    updatePartnerPosition();
 });
 
 const containerToWatch = document.querySelector('.container');
@@ -130,11 +130,11 @@ if (containerToWatch) {
 
 // Ensure positioning is perfect once the custom fonts are ready
 if (document.fonts) {
-    document.fonts.ready.then(updateSponsorPosition);
+    document.fonts.ready.then(updatePartnerPosition);
 }
 
 // Fallback for full page load
-window.addEventListener('load', updateSponsorPosition);
+window.addEventListener('load', updatePartnerPosition);
 
 document.querySelectorAll('.row').forEach(row => {
     const preview = row.querySelector('.row-preview');
