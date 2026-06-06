@@ -197,6 +197,33 @@ a:hover .row-preview,
     white-space: nowrap;
 }
 
+.company-link {
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+.company-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 0;
+    height: 1px;
+    background-color: #3b82f6;
+    transition: width 0.3s ease;
+}
+
+.company-link:hover {
+    color: #3b82f6 !important;
+}
+
+.company-link:hover::after {
+    width: 100%;
+}
+
 .project-link {
     cursor: pointer;
     transition: color 0.1s;
