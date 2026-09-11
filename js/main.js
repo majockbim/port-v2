@@ -163,3 +163,12 @@ document.querySelectorAll('.row').forEach(row => {
         if (soon) soon.style.opacity = '0';
     });
 });
+
+const freelanceLogo = document.getElementById('freelance-logo');
+if (freelanceLogo) {
+    const logos = [
+        'assets/outlier/logo/outlier.png',
+        'assets/dataannotation/logo/dataannotation.jpg'
+    ];
+    freelanceLogo.src = logos[Math.floor(Math.random() * logos.length)];
+}
