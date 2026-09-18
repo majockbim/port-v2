@@ -19,14 +19,19 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 body { margin: 0; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; background: var(--bg); color: var(--text); font: 400 16px/1.5 "Minecraft", "Lucida Console", monospace; }
-body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background-image: radial-gradient(#303034 .65px, transparent .65px); background-size: 28px 28px; mask-image: linear-gradient(#0009, transparent 85%); }
+/* Two sparse, composited layers: gentle drift rather than falling columns. */
+.bit-field { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; mask-image: linear-gradient(to right, #000, #0009 22%, #0002 38%, #0002 62%, #0009 78%, #000); }
+.bit-field::before, .bit-field::after { content: ""; position: absolute; inset: -24px; background: url("../assets/bits.svg") repeat; opacity: .2; animation: bit-drift 28s ease-in-out infinite alternate; }
+.bit-field::after { background-position: 350px 240px; opacity: .1; animation-duration: 37s; animation-delay: -17s; }
+@keyframes bit-drift { from { transform: translate3d(0, 0, 0); opacity: .1; } to { transform: translate3d(8px, -16px, 0); opacity: .24; } }
+
 h1, h2, h3, p { margin: 0; font-weight: 400; }
 a { color: inherit; text-decoration: none; }
 a:hover { color: var(--accent); }
 a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 img { display: block; max-width: 100%; height: auto; }
 ::selection { color: #fff; background: #514064; }
-.shell { width: min(640px, calc(100% - 48px)); padding-block: 48px 28px; }
+.shell { position: relative; z-index: 1; width: min(640px, calc(100% - 48px)); padding-block: 48px 28px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0; }
 .skip-link { position: fixed; z-index: 10; top: 12px; left: 16px; padding: 8px 15px; background: var(--text); color: var(--bg); transform: translateY(-170%); }
 .skip-link:focus { transform: translateY(0); }
@@ -38,11 +43,17 @@ h1 { font-size: 32px; line-height: 1.3; }
 .resume-link { font-size: 13px; margin-left: auto; white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center; gap: 6px; }
 section + section { margin-top: 23px; }
 h2 { font-size: 17px; margin-bottom: 11px; }
-.row { position: relative; display: flex; align-items: center; gap: 14px; padding: 8px; margin-inline: -8px; min-height: 57px; border: 1px solid transparent; border-radius: 3px; }
+.row { position: relative; display: flex; align-items: center; gap: 14px; padding: 8px; margin-inline: -8px; min-height: 57px; border: 1px solid transparent; border-radius: 3px; transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease; }
 .row + .row { margin-top: 3px; }
-a.row:hover, a.row:focus-visible { border-color: var(--line); background: #ffffff03; color: var(--text); }
+a.row:hover, a.row:focus-visible { border-color: var(--line); background: #ffffff05; color: var(--text); box-shadow: 0 0 18px #bca5f907; }
 .row-icon { width: 30px; height: 30px; flex-shrink: 0; object-fit: contain; }
-.row-copy { min-width: 0; }
+.row-copy { min-width: 0; transition: translate 220ms ease; }
+a.row:hover .row-copy, a.row:focus-visible .row-copy { translate: 3px 0; }
+.row-copy p { transition: color 220ms ease; }
+a.row:hover .row-copy p, a.row:focus-visible .row-copy p { color: #bdbcc6; }
+.project-wrap { position: relative; margin-top: 3px; }
+.project-wrap + .row { margin-top: 3px; }
+.sponsor-callout { display: none; }
 h3 { font-size: 16px; line-height: 1.45; }
 .row-copy p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 2px; }
 .status { font-size: 12px; color: var(--quiet); margin-left: 9px; white-space: nowrap; }
@@ -50,23 +61,28 @@ h3 { font-size: 16px; line-height: 1.45; }
 .spectrum-icon { display: grid; place-items: center; }
 .spectrum-icon img { width: 30px; height: 30px; object-fit: contain; }
 .spectrum-still { display: none; }
-.spectrum-name { display: inline-block; }
-
-/* Same moving-gradient effect as main, with lighter colors for contrast. */
-@keyframes rainbow-move { to { background-position: 200% center; } }
-.spectrum-row:hover .spectrum-name,
-.spectrum-row:focus-visible .spectrum-name {
+.spectrum-name { display: inline-grid; position: relative; }
+.spectrum-white, .spectrum-rainbow { grid-area: 1 / 1; transition: opacity 420ms ease; }
+.spectrum-white { opacity: 1; color: var(--text); }
+.spectrum-rainbow {
+  opacity: 0;
   color: transparent;
   background: linear-gradient(to right, #ff8585, #ffbd80, #fff18a, #95ec95, #8ae7ef, #aab4ff, #d5adff, #ff8585);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   animation: rainbow-move 3s linear infinite;
+  animation-play-state: paused;
   filter: drop-shadow(0 0 3px #e0caff35);
 }
+@keyframes rainbow-move { to { background-position: 200% center; } }
+.spectrum-row:hover .spectrum-white, .spectrum-row:focus-visible .spectrum-white { opacity: 0; }
+.spectrum-row:hover .spectrum-rainbow, .spectrum-row:focus-visible .spectrum-rainbow { opacity: 1; animation-play-state: running; }
 body:has(#pause-motion:checked) .spectrum-animated { display: none; }
 body:has(#pause-motion:checked) .spectrum-still { display: block; }
-body:has(#pause-motion:checked) .spectrum-name { animation: none; }
+body:has(#pause-motion:checked) .spectrum-rainbow,
+body:has(#pause-motion:checked) .bit-field::before,
+body:has(#pause-motion:checked) .bit-field::after { animation-play-state: paused; }
 
 footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; column-gap: 20px; border-top: 1px solid var(--line); margin-top: 25px; padding-top: 12px; }
 nav { display: flex; align-items: center; gap: 7px; margin-left: -9px; }
@@ -79,9 +95,16 @@ nav a:hover img, nav a:focus-visible img { opacity: 1; }
 
 /* Previews are supplementary; all descriptions and source links stay visible. */
 @media (min-width: 1280px) and (hover: hover) {
-  .row-preview { display: block; position: fixed; width: min(250px, calc(100vw - 48px)); right: max(24px, calc((100vw - 1240px) / 2)); top: 50%; transform: translateY(-50%); visibility: hidden; opacity: 0; pointer-events: none; }
+  .row-preview { display: block; position: fixed; width: min(250px, calc(100vw - 48px)); right: max(24px, calc((100vw - 1240px) / 2)); top: 50%; transform: translateY(-50%); visibility: hidden; opacity: 0; pointer-events: none; transition: opacity 260ms ease, visibility 260ms; }
   .row-preview img { width: 100%; border: 1px solid var(--line); border-radius: 3px; background: #000; }
   .row:hover .row-preview, .row:focus-visible .row-preview { visibility: visible; opacity: 1; }
+}
+@media (min-width: 1280px) {
+  .sponsor-callout { position: absolute; right: calc(100% + 28px); top: 50%; transform: translateY(-50%); display: grid; grid-template-columns: auto 48px; align-items: center; gap: 5px 8px; width: 156px; font-size: 12px; color: var(--muted); transition: color 220ms ease; }
+  .sponsor-callout span { grid-column: 1; }
+  .sponsor-callout img { grid-column: 1; width: 94px; height: auto; }
+  .sponsor-callout svg { grid-column: 2; grid-row: 1 / 3; }
+  .sponsor-callout:hover { color: var(--text); }
 }
 @media (max-width: 600px) {
   .shell { width: calc(100% - 40px); padding-block: 32px 20px; }
@@ -110,14 +133,16 @@ nav a:hover img, nav a:focus-visible img { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .spectrum-name { animation: none !important; }
+  .spectrum-rainbow, .bit-field::before, .bit-field::after { animation: none !important; }
+  *, *::before, *::after { transition: none !important; }
+  a.row:hover .row-copy, a.row:focus-visible .row-copy { translate: none; }
   .spectrum-animated, .motion-control { display: none; }
   .spectrum-still { display: block; }
 }
 @media print {
   :root { color-scheme: light; --bg: #fff; --text: #111; --muted: #333; --quiet: #444; --line: #ccc; }
   body { display: block; }
-  body::before, .row-preview, .motion-control { display: none; }
+  .bit-field, .row-preview, .motion-control, .sponsor-callout { display: none; }
   .shell { width: 100%; padding: 0; }
   .row { break-inside: avoid; }
   .spectrum-animated { display: none; }
