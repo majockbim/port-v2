@@ -6,7 +6,6 @@ async function expectNoOverflow(page) {
 }
 
 const projects = {
-  exoskeleton: 'https://github.com/McMaster-Exoskeleton/exoskeleton-embedded',
   physio: 'https://github.com/majockbim/physio',
   spectrum: 'https://github.com/majockbim/spectrum',
   lodestone: 'https://github.com/majockbim/lodestone',
@@ -47,14 +46,14 @@ test('Spectrum restores its GIF and rainbow focus effect with a pause control', 
   await expect(page.locator('.spectrum-animated')).toBeVisible();
   await page.keyboard.press('Tab');
   await page.locator('#spectrum').focus();
-  const name = page.locator('.spectrum-name');
+  const name = page.locator('.spectrum-rainbow');
   expect(await name.evaluate(el => getComputedStyle(el).backgroundImage)).toContain('linear-gradient');
   expect(await name.evaluate(el => getComputedStyle(el).animationName)).toBe('rainbow-move');
   await page.getByRole('checkbox', { name: 'Pause animation' }).check();
   await expect(page.locator('.spectrum-animated')).toBeHidden();
   await expect(page.locator('.spectrum-still')).toBeVisible();
   await page.locator('#spectrum').focus();
-  expect(await name.evaluate(el => getComputedStyle(el).animationName)).toBe('none');
+  expect(await name.evaluate(el => getComputedStyle(el).animationPlayState)).toBe('paused');
   await page.getByRole('checkbox', { name: 'Pause animation' }).uncheck();
   await expect(page.locator('.spectrum-animated')).toBeVisible();
 });
@@ -67,7 +66,7 @@ test('compact layout and hover previews reflow from phones to desktop', async ({
     if (!isMobile && width >= 1280) {
       await page.locator('#spectrum').hover();
       await expect(page.locator('#spectrum .row-preview')).toBeVisible();
-      expect(await page.locator('.spectrum-name').evaluate(el => getComputedStyle(el).animationName)).toBe('rainbow-move');
+      expect(await page.locator('.spectrum-rainbow').evaluate(el => getComputedStyle(el).animationName)).toBe('rainbow-move');
       await expectNoOverflow(page);
     }
   }
@@ -87,8 +86,9 @@ test('no JavaScript, reduced motion, and unavailable font remain usable', async 
   await expect(page.locator('.spectrum-still')).toBeVisible();
   await expect(page.locator('.spectrum-animated')).toBeHidden();
   expect(gifRequests).toEqual([]);
+  expect(await page.locator('.bit-field').evaluate(el => getComputedStyle(el, '::before').animationName)).toBe('none');
   await page.locator('#spectrum').focus();
-  expect(await page.locator('.spectrum-name').evaluate(el => getComputedStyle(el).animationName)).toBe('none');
+  expect(await page.locator('.spectrum-rainbow').evaluate(el => getComputedStyle(el).animationName)).toBe('none');
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
   await expectNoOverflow(page);
   await expect(page.locator('script')).toHaveCount(0);
@@ -106,5 +106,42 @@ test('skip link, keyboard focus, and content pass accessibility checks', async (
   const scan = () => new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze();
   expect((await scan()).violations).toEqual([]);
   await page.locator('#spectrum').focus();
+  await expect(page.locator('.spectrum-white')).toHaveCSS('opacity', '0');
   expect((await scan()).violations).toEqual([]);
+});
+
+
+test('role, hackathon, sponsor, and background reflect the requested hierarchy', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('#work .project')).toHaveCount(3);
+  await expect(page.locator('section[aria-labelledby="now-title"]')).toContainText('McMaster Exoskeleton');
+  await expect(page.locator('section[aria-labelledby="previous-title"]')).toContainText('LA Hacks 2026');
+  await expect(page.locator('section[aria-labelledby="previous-title"]')).toContainText('UCLA');
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await expect(page.getByRole('link', { name: 'Physio PCB manufacturing sponsored by PCBWay' })).toBeVisible();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(page.locator('.sponsor-callout')).toBeHidden();
+  expect(await page.locator('.bit-field').evaluate(el => getComputedStyle(el, '::before').animationPlayState)).toBe('running');
+  await page.getByRole('checkbox', { name: 'Pause animation' }).check();
+  expect(await page.locator('.bit-field').evaluate(el => getComputedStyle(el, '::before').animationPlayState)).toBe('paused');
+});
+
+test('Spectrum blends from white into color rather than switching instantly', async ({ page }) => {
+  await page.goto('/');
+  await page.keyboard.press('Tab');
+  const mid = await page.locator('.spectrum-white').evaluate(el => {
+    // Trigger and sample within one browser task so remote-call latency cannot
+    // consume the short transition (especially in Firefox).
+    getComputedStyle(el).opacity;
+    document.querySelector('#spectrum').focus();
+    getComputedStyle(el).opacity;
+    const transition = el.getAnimations().find(animation => animation.transitionProperty === 'opacity');
+    if (!transition) return null;
+    transition.pause();
+    transition.currentTime = Number(transition.effect.getTiming().duration) / 2;
+    return Number(getComputedStyle(el).opacity);
+  });
+  expect(mid).not.toBeNull();
+  expect(mid).toBeGreaterThan(0);
+  expect(mid).toBeLessThan(1);
 });

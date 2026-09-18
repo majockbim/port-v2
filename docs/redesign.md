@@ -27,10 +27,10 @@ Use the supplied resume PDF unchanged as the downloadable resume. Reuse the port
 ## Acceptance criteria
 
 - A reviewer can find the work, resume, GitHub and email immediately.
-- All four supplied projects are represented with accurate status and working source links.
+- Exoskeleton is represented as a current role. Physio, Spectrum, and Lodestone have direct project links; LA Hacks appears under Previously.
 - Essential content and navigation work without JavaScript.
 - Keyboard focus, reduced motion, small screens and browser zoom are supported.
-- Essential information must not depend on hover. Supplemental project images may appear on wide-screen hover/focus. No background animation or third-party location lookup is needed.
+- Essential information must not depend on hover. Supplemental project images may appear on wide-screen hover/focus. The requested background uses sparse CSS-animated bits with pause and reduced-motion support. No third-party location lookup is needed.
 - Prioritize phones, tablets, keyboard access, and narrow landscape windows alongside desktop. Keep the visible page concise.
 - Keep CNAME and the production branch intact; push only the feature branch for review.
 

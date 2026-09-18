@@ -35,7 +35,7 @@ The suite covers Chromium, Firefox, WebKit, and emulated Android, iPhone, and iP
 - Project `*.webp` files: optimized previews. Original PNGs remain available as sources.
 - `docs/redesign.md`: content evidence and design intent.
 
-Keep role dates and project status current. Project rows link directly to source. Supplemental image previews appear on hover or keyboard focus on wide screens; the text and links remain available at every size. Spectrum uses a resized copy of the original 300-frame GIF, with a static fallback for reduced motion and a native pause checkbox. The rainbow title uses the original moving-gradient technique.
+Keep role dates and project status current. Project rows link directly to source. Supplemental image previews appear on hover or keyboard focus on wide screens; the text and links remain available at every size. Spectrum uses a resized copy of the original 300-frame GIF, with a static fallback for reduced motion and a native pause checkbox. The white Spectrum title crossfades into the moving rainbow. Sparse background bits drift slowly using CSS; the same pause checkbox stops them, and reduced motion keeps them static. LA Hacks remains under Previously, Exoskeleton is a current role, and the Physio PCBWay callout appears at widths of 1280px and above.
 
 ## Hosting
 
