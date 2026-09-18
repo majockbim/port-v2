@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0c0c0e">
   <meta name="description" content="Majock Bim — mechatronics at McMaster. Embedded firmware, C++ systems, and projects that connect software to hardware.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Majock Bim — Embedded &amp; Systems">
+  <meta property="og:description" content="Mechatronics at McMaster. Embedded firmware, C++ systems, and a bit of curiosity.">
+  <meta property="og:url" content="https://majockbim.com/">
   <title>Majock Bim — Embedded &amp; Systems</title>
   <link rel="canonical" href="https://majockbim.com/">
   <link rel="icon" type="image/png" href="assets/logos/site/fish.png">
@@ -34,10 +38,65 @@
 
       <section id="work" class="work-section" aria-labelledby="work-title">
         <div class="section-heading"><h2 id="work-title" class="section-label"><span aria-hidden="true">02 /</span> selected work</h2><span class="section-note">close to the metal.</span></div>
-        <article id="exoskeleton" class="project" aria-labelledby="exo-title"><div class="project-icon"><img src="assets/macexo/logo/exo.png" width="38" height="38" alt=""></div><div class="project-main"><div class="project-heading"><h3 id="exo-title"><a href="https://github.com/McMaster-Exoskeleton/exoskeleton-embedded" target="_blank" rel="noopener noreferrer">exoskeleton <span aria-hidden="true">↗</span></a></h3><span class="project-status">team project</span></div><p>Sensor to actuator. Firmware for a lower-limb exoskeleton.</p><p class="project-stack">C / STM32 / CAN / DMA</p></div></article>
-        <article id="physio" class="project" aria-labelledby="physio-title"><div class="project-icon"><img src="assets/physio/logo/physio.png" width="38" height="38" alt=""></div><div class="project-main"><div class="project-heading"><h3 id="physio-title"><a href="https://github.com/majockbim/physio" target="_blank" rel="noopener noreferrer">physio <span aria-hidden="true">↗</span></a></h3><span class="project-status">LA Hacks ’26</span></div><p>A rehab wearable. Two IMUs, BLE, and on-device movement scoring.</p><p class="project-stack">ESP32 / C++ / BLE / Altium</p></div></article>
-        <article id="spectrum" class="project" aria-labelledby="spectrum-title"><div class="project-icon spectrum-icon"><img src="assets/spectrum/logo/term-trans.png" width="38" height="38" alt=""></div><div class="project-main"><div class="project-heading"><h3 id="spectrum-title"><a href="https://github.com/majockbim/spectrum" target="_blank" rel="noopener noreferrer">spectrum <span aria-hidden="true">↗</span></a></h3><span class="project-status">open source</span></div><p>Your system audio, visualized in the terminal.</p><p class="project-stack">C++17 / FFTW3 / WASAPI</p></div></article>
-        <article id="lodestone" class="project" aria-labelledby="lodestone-title"><div class="project-icon"><img src="assets/lodestone/logo/mag-invert-trans.png" width="38" height="38" alt=""></div><div class="project-main"><div class="project-heading"><h3 id="lodestone-title"><a href="https://github.com/majockbim/lodestone" target="_blank" rel="noopener noreferrer">lodestone <span aria-hidden="true">↗</span></a></h3><span class="project-status status-wip">in progress</span></div><p>A magnet on a chair turned into a C++ magnetic-field simulator.</p><p class="project-stack">C++17 / CMake / GoogleTest</p></div></article>
+        <article id="exoskeleton" class="project" aria-labelledby="exo-title">
+          <div class="project-icon"><img src="assets/macexo/logo/exo.png" width="38" height="38" alt=""></div>
+          <div class="project-main">
+            <div class="project-heading"><h3 id="exo-title"><a href="https://github.com/McMaster-Exoskeleton/exoskeleton-embedded" target="_blank" rel="noopener noreferrer">exoskeleton <span aria-hidden="true">↗</span></a></h3><span class="project-status">team project</span></div>
+            <p>Sensor to actuator. Firmware for a lower-limb exoskeleton.</p>
+            <p class="project-stack">C / STM32 / CAN / DMA</p>
+            <details>
+              <summary><span class="detail-open">Details</span><span class="detail-close">Less</span><span class="sr-only"> about Exoskeleton</span></summary>
+              <div class="project-detail">
+                <ul><li>I developed CAN firmware linking a Raspberry Pi 5 and four STM32 controllers over a 1 Mbit/s bus.</li><li>For IMU acquisition, I increased the I²C clock from 100 to 400 kHz and implemented DMA reads with interrupt-driven completion.</li></ul>
+                <figure><img src="assets/macexo/preview/exo.png" width="1920" height="1080" loading="lazy" alt="Exoskeleton bench setup with Raspberry Pi, STM32 boards, sensor telemetry, and a leg assembly CAD model."><figcaption>On the bench: sensing, communication, and control.</figcaption></figure>
+              </div>
+            </details>
+          </div>
+        </article>
+        <article id="physio" class="project" aria-labelledby="physio-title">
+          <div class="project-icon"><img src="assets/physio/logo/physio.png" width="38" height="38" alt=""></div>
+          <div class="project-main">
+            <div class="project-heading"><h3 id="physio-title"><a href="https://github.com/majockbim/physio" target="_blank" rel="noopener noreferrer">physio <span aria-hidden="true">↗</span></a></h3><span class="project-status">LA Hacks ’26</span></div>
+            <p>A rehab wearable. Two IMUs, BLE, and on-device movement scoring.</p>
+            <p class="project-stack">ESP32 / C++ / BLE / Altium</p>
+            <details>
+              <summary><span class="detail-open">Details</span><span class="detail-close">Less</span><span class="sr-only"> about Physio</span></summary>
+              <div class="project-detail">
+                <ul><li>I built the ESP32-C3 sensing and BLE pipeline: two MPU6050 IMUs, 76-byte packets, and a nominal 80 Hz stream to iOS.</li><li>After the team’s hackathon prototype, I designed a two-layer carrier PCB for a solo second iteration, earning PCBWay manufacturing sponsorship.</li></ul>
+                <a class="detail-link" href="https://devpost.com/software/strokr-ai" target="_blank" rel="noopener noreferrer">See the hackathon project <span aria-hidden="true">↗</span></a>
+                <figure><img src="assets/physio/preview/physio.png" width="1920" height="1080" loading="lazy" alt="Physio's wearable arm prototype alongside its iOS exercise and movement-scoring screens."><figcaption>LA Hacks 2026 · a rehabilitation prototype.</figcaption></figure>
+              </div>
+            </details>
+          </div>
+        </article>
+        <article id="spectrum" class="project" aria-labelledby="spectrum-title">
+          <div class="project-icon"><img src="assets/spectrum/logo/term-trans.png" width="38" height="38" alt=""></div>
+          <div class="project-main">
+            <div class="project-heading"><h3 id="spectrum-title"><a href="https://github.com/majockbim/spectrum" target="_blank" rel="noopener noreferrer">spectrum <span aria-hidden="true">↗</span></a></h3><span class="project-status">open source</span></div>
+            <p>Your system audio, visualized in the terminal.</p>
+            <p class="project-stack">C++17 / FFTW3 / WASAPI</p>
+            <details>
+              <summary><span class="detail-open">Details</span><span class="detail-close">Less</span><span class="sr-only"> about Spectrum</span></summary>
+              <div class="project-detail">
+                <ul><li>I built a multithreaded audio pipeline with WASAPI loopback capture, 2,400-sample Hann windows, FFTW3 processing, and automatic gain control.</li><li>Reported project results: 60 FPS rendering and under 5% CPU usage. Performance varies by system.</li></ul>
+                <a class="detail-link" href="https://github.com/majockbim/spectrum/releases" target="_blank" rel="noopener noreferrer">Try Spectrum for Windows <span aria-hidden="true">↗</span></a>
+                <figure><img src="assets/spectrum/equalizer.png" width="1920" height="1080" loading="lazy" alt="Spectrum running in a Windows terminal alongside its C++ renderer and Fourier transform notes."><figcaption>Audio capture → FFT → terminal.</figcaption></figure>
+              </div>
+            </details>
+          </div>
+        </article>
+        <article id="lodestone" class="project" aria-labelledby="lodestone-title">
+          <div class="project-icon"><img src="assets/lodestone/logo/mag-invert-trans.png" width="38" height="38" alt=""></div>
+          <div class="project-main">
+            <div class="project-heading"><h3 id="lodestone-title"><a href="https://github.com/majockbim/lodestone" target="_blank" rel="noopener noreferrer">lodestone <span aria-hidden="true">↗</span></a></h3><span class="project-status status-wip">in progress</span></div>
+            <p>A magnet on a chair turned into a C++ magnetic-field simulator.</p>
+            <p class="project-stack">C++17 / CMake / GoogleTest</p>
+            <details>
+              <summary><span class="detail-open">Details</span><span class="detail-close">Less</span><span class="sr-only"> about Lodestone</span></summary>
+              <div class="project-detail"><ul><li>Currently calculating the 3D vector field of a single magnetic dipole, with tests for direction, inverse-cube falloff, and superposition.</li><li>OpenGL window setup is in place; interactive visualization is still in development.</li></ul></div>
+            </details>
+          </div>
+        </article>
       </section>
 
       <section class="previous-section" aria-labelledby="previous-title"><h2 id="previous-title" class="section-label"><span aria-hidden="true">03 /</span> previously</h2><div class="previous-row"><div><h3>Developer &amp; code evaluator</h3><p>OutlierAI / DataAnnotation · C++ &amp; Python</p></div><span class="date">May — Aug 2026</span></div></section>
