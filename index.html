@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0c0c0e">
-  <meta name="description" content="Majock Bim — mechatronics at McMaster. Embedded firmware, C++ systems, and projects that connect software to hardware.">
+  <meta name="theme-color" content="#080809">
+  <meta name="description" content="Majock Bim. Mechatronics at McMaster, embedded software and systems projects.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Majock Bim — Embedded &amp; Systems">
-  <meta property="og:description" content="Mechatronics at McMaster. Embedded firmware, C++ systems, and a bit of curiosity.">
+  <meta property="og:description" content="Mechatronics at McMaster, embedded software and systems projects.">
   <meta property="og:url" content="https://majockbim.com/">
   <title>Majock Bim — Embedded &amp; Systems</title>
   <link rel="canonical" href="https://majockbim.com/">
@@ -18,92 +18,69 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="shell">
     <header class="site-header">
-      <a class="home-link" href="#" aria-label="Majock Bim, home"><img src="assets/logos/site/punpun.jpg" width="32" height="32" alt=""><span>~/majockbim</span></a>
-      <nav aria-label="Main navigation"><a href="#work">work</a><a href="#contact">contact</a><a class="resume-link" href="assets/Majock_Bim_Resume.pdf" target="_blank" rel="noopener noreferrer">resume <span aria-hidden="true">↗</span><span class="sr-only"> (PDF, opens in a new tab)</span></a></nav>
+      <img class="avatar" src="assets/logos/site/punpun.jpg" width="42" height="42" alt="">
+      <div class="identity"><h1>Majock Bim</h1><span class="handle">@majockbim</span></div>
+      <a class="resume-link" href="assets/Majock_Bim_Resume.pdf" target="_blank" rel="noopener noreferrer">resume <span aria-hidden="true">↗</span><span class="sr-only"> (PDF, opens in a new tab)</span></a>
     </header>
 
     <main id="main" tabindex="-1">
-      <section class="intro" aria-labelledby="intro-title">
-        <p class="eyebrow"><span class="pixel-dot" aria-hidden="true"></span> embedded / systems / a bit of curiosity</p>
-        <h1 id="intro-title">Majock Bim<span class="cursor" aria-hidden="true">_</span></h1>
-        <p class="intro-copy">I write software that meets the real world.<br>Mechatronics at McMaster. Usually somewhere<br class="desktop-break"> between C++, a microcontroller, and the debugger.</p>
-        <div class="intro-links"><a href="https://github.com/majockbim" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/majockbim/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href="mailto:bmajock@gmail.com">Email <span aria-hidden="true">↗</span></a></div>
-        <div class="bit-art" aria-hidden="true"><span>0001</span><span>1010</span><span>0110</span><span>1101</span></div>
+      <section aria-labelledby="now-title">
+        <h2 id="now-title">Currently</h2>
+        <a class="row" href="https://www.macexo.com/" target="_blank" rel="noopener noreferrer">
+          <img class="row-icon" src="assets/macexo/logo/exo.png" width="32" height="32" alt="">
+          <div class="row-copy"><h3>Embedded &amp; controls team lead</h3><p>McMaster Exoskeleton · leading a team of 8</p></div>
+        </a>
+        <a class="row" href="https://www.eng.mcmaster.ca/cas/degree-options/mechatronics/" target="_blank" rel="noopener noreferrer">
+          <img class="row-icon" src="assets/mcmaster/logo/mcmaster.png" width="32" height="32" alt="">
+          <div class="row-copy"><h3>McMaster University</h3><p>Mechatronics engineering · class of 2029</p></div>
+        </a>
       </section>
 
-      <section class="now-section" aria-labelledby="now-title">
-        <h2 id="now-title" class="section-label"><span aria-hidden="true">01 /</span> currently</h2>
-        <div class="now-grid"><div class="now-item"><img src="assets/macexo/logo/exo.png" width="28" height="28" alt=""><div><a href="https://www.macexo.com/" target="_blank" rel="noopener noreferrer">Embedded &amp; controls team lead <span aria-hidden="true">↗</span></a><p>McMaster Exoskeleton · leading a team of 8</p></div></div><div class="now-item"><img src="assets/mcmaster/logo/mcmaster.png" width="28" height="28" alt=""><div><span class="now-title">Mechatronics engineering</span><p>McMaster University · class of 2029</p></div></div></div>
+      <section aria-labelledby="previous-title">
+        <h2 id="previous-title">Previously</h2>
+        <div class="row">
+          <img class="row-icon" src="assets/outlier/logo/outlier.png" width="32" height="32" alt="">
+          <div class="row-copy"><h3>Developer &amp; code evaluator</h3><p>OutlierAI / DataAnnotation · May–Aug 2026</p></div>
+        </div>
       </section>
 
-      <section id="work" class="work-section" aria-labelledby="work-title">
-        <div class="section-heading"><h2 id="work-title" class="section-label"><span aria-hidden="true">02 /</span> selected work</h2><span class="section-note">close to the metal.</span></div>
-        <article id="exoskeleton" class="project" aria-labelledby="exo-title">
-          <div class="project-icon"><img src="assets/macexo/logo/exo.png" width="38" height="38" alt=""></div>
-          <div class="project-main">
-            <div class="project-heading"><h3 id="exo-title"><a href="https://github.com/McMaster-Exoskeleton/exoskeleton-embedded" target="_blank" rel="noopener noreferrer">exoskeleton <span aria-hidden="true">↗</span></a></h3><span class="project-status">team project</span></div>
-            <p>Sensor to actuator. Firmware for a lower-limb exoskeleton.</p>
-            <p class="project-stack">C / STM32 / CAN / DMA</p>
-            <details>
-              <summary><span class="detail-open">Details</span><span class="detail-close">Less</span><span class="sr-only"> about Exoskeleton</span></summary>
-              <div class="project-detail">
-                <ul><li>I developed CAN firmware linking a Raspberry Pi 5 and four STM32 controllers over a 1 Mbit/s bus.</li><li>For IMU acquisition, I increased the I²C clock from 100 to 400 kHz and implemented DMA reads with interrupt-driven completion.</li></ul>
-                <figure><img src="assets/macexo/preview/exo.webp" width="1920" height="1080" loading="lazy" alt="Exoskeleton bench setup with Raspberry Pi, STM32 boards, sensor telemetry, and a leg assembly CAD model."><figcaption>On the bench: sensing, communication, and control.</figcaption></figure>
-              </div>
-            </details>
-          </div>
-        </article>
-        <article id="physio" class="project" aria-labelledby="physio-title">
-          <div class="project-icon"><img src="assets/physio/logo/physio.png" width="38" height="38" alt=""></div>
-          <div class="project-main">
-            <div class="project-heading"><h3 id="physio-title"><a href="https://github.com/majockbim/physio" target="_blank" rel="noopener noreferrer">physio <span aria-hidden="true">↗</span></a></h3><span class="project-status">LA Hacks ’26</span></div>
-            <p>A rehab wearable. Two IMUs, BLE, and on-device movement scoring.</p>
-            <p class="project-stack">ESP32 / C++ / BLE / Altium</p>
-            <details>
-              <summary><span class="detail-open">Details</span><span class="detail-close">Less</span><span class="sr-only"> about Physio</span></summary>
-              <div class="project-detail">
-                <ul><li>I built the ESP32-C3 sensing and BLE pipeline: two MPU6050 IMUs, 76-byte packets, and a nominal 80 Hz stream to iOS.</li><li>After the team’s hackathon prototype, I designed a two-layer carrier PCB for a solo second iteration, earning PCBWay manufacturing sponsorship.</li></ul>
-                <a class="detail-link" href="https://devpost.com/software/strokr-ai" target="_blank" rel="noopener noreferrer">See the hackathon project <span aria-hidden="true">↗</span></a>
-                <figure><img src="assets/physio/preview/physio.webp" width="1920" height="1080" loading="lazy" alt="Physio's wearable arm prototype alongside its iOS exercise and movement-scoring screens."><figcaption>LA Hacks 2026 · a rehabilitation prototype.</figcaption></figure>
-              </div>
-            </details>
-          </div>
-        </article>
-        <article id="spectrum" class="project" aria-labelledby="spectrum-title">
-          <div class="project-icon"><img src="assets/spectrum/logo/term-trans.png" width="38" height="38" alt=""></div>
-          <div class="project-main">
-            <div class="project-heading"><h3 id="spectrum-title"><a href="https://github.com/majockbim/spectrum" target="_blank" rel="noopener noreferrer">spectrum <span aria-hidden="true">↗</span></a></h3><span class="project-status">open source</span></div>
-            <p>Your system audio, visualized in the terminal.</p>
-            <p class="project-stack">C++17 / FFTW3 / WASAPI</p>
-            <details>
-              <summary><span class="detail-open">Details</span><span class="detail-close">Less</span><span class="sr-only"> about Spectrum</span></summary>
-              <div class="project-detail">
-                <ul><li>I built a multithreaded audio pipeline with WASAPI loopback capture, 2,400-sample Hann windows, FFTW3 processing, and automatic gain control.</li><li>Reported project results: 60 FPS rendering and under 5% CPU usage. Performance varies by system.</li></ul>
-                <a class="detail-link" href="https://github.com/majockbim/spectrum/releases" target="_blank" rel="noopener noreferrer">Try Spectrum for Windows <span aria-hidden="true">↗</span></a>
-                <figure><img src="assets/spectrum/equalizer.webp" width="1920" height="1080" loading="lazy" alt="Spectrum running in a Windows terminal alongside its C++ renderer and Fourier transform notes."><figcaption>Audio capture → FFT → terminal.</figcaption></figure>
-              </div>
-            </details>
-          </div>
-        </article>
-        <article id="lodestone" class="project" aria-labelledby="lodestone-title">
-          <div class="project-icon"><img src="assets/lodestone/logo/mag-invert-trans.png" width="38" height="38" alt=""></div>
-          <div class="project-main">
-            <div class="project-heading"><h3 id="lodestone-title"><a href="https://github.com/majockbim/lodestone" target="_blank" rel="noopener noreferrer">lodestone <span aria-hidden="true">↗</span></a></h3><span class="project-status status-wip">in progress</span></div>
-            <p>A magnet on a chair turned into a C++ magnetic-field simulator.</p>
-            <p class="project-stack">C++17 / CMake / GoogleTest</p>
-            <details>
-              <summary><span class="detail-open">Details</span><span class="detail-close">Less</span><span class="sr-only"> about Lodestone</span></summary>
-              <div class="project-detail"><ul><li>Currently calculating the 3D vector field of a single magnetic dipole, with tests for direction, inverse-cube falloff, and superposition.</li><li>OpenGL window setup is in place; interactive visualization is still in development.</li></ul></div>
-            </details>
-          </div>
-        </article>
+      <section id="work" aria-labelledby="work-title">
+        <h2 id="work-title">Projects</h2>
+        <a id="exoskeleton" class="row project" href="https://github.com/McMaster-Exoskeleton/exoskeleton-embedded" target="_blank" rel="noopener noreferrer">
+          <img class="row-icon" src="assets/macexo/logo/exo.png" width="32" height="32" alt="">
+          <div class="row-copy"><h3>exoskeleton</h3><p>STM32 sensing, CAN communication &amp; motor control</p></div>
+          <div class="row-preview" aria-hidden="true"><img src="assets/macexo/preview/exo.webp" width="1200" height="675" loading="lazy" alt=""></div>
+        </a>
+        <a id="physio" class="row project" href="https://github.com/majockbim/physio" target="_blank" rel="noopener noreferrer">
+          <img class="row-icon" src="assets/physio/logo/physio.png" width="32" height="32" alt="">
+          <div class="row-copy"><h3>physio</h3><p>Stroke-rehab wearable · ESP32, BLE &amp; on-device ML</p></div>
+          <div class="row-preview" aria-hidden="true"><img src="assets/physio/preview/physio.webp" width="1200" height="675" loading="lazy" alt=""></div>
+        </a>
+        <a id="spectrum" class="row project spectrum-row" href="https://github.com/majockbim/spectrum" target="_blank" rel="noopener noreferrer">
+          <span class="row-icon spectrum-icon" aria-hidden="true">
+            <picture class="spectrum-animated"><source media="(prefers-reduced-motion: reduce)" srcset="assets/spectrum/logo/term-trans.png"><img src="assets/spectrum/logo/spectrum-small.gif" width="32" height="32" alt=""></picture>
+            <img class="spectrum-still" src="assets/spectrum/logo/term-trans.png" width="32" height="32" alt="">
+          </span>
+          <div class="row-copy"><h3><span class="spectrum-name">spectrum</span></h3><p>Real-time terminal audio visualizer in C++</p></div>
+          <div class="row-preview" aria-hidden="true"><img src="assets/spectrum/equalizer.webp" width="1200" height="675" loading="lazy" alt=""></div>
+        </a>
+        <a id="lodestone" class="row project" href="https://github.com/majockbim/lodestone" target="_blank" rel="noopener noreferrer">
+          <img class="row-icon" src="assets/lodestone/logo/mag-invert-trans.png" width="32" height="32" alt="">
+          <div class="row-copy"><h3>lodestone <span class="status">in progress</span></h3><p>Magnetic-field simulation in C++</p></div>
+        </a>
       </section>
-
-      <section class="previous-section" aria-labelledby="previous-title"><h2 id="previous-title" class="section-label"><span aria-hidden="true">03 /</span> previously</h2><div class="previous-row"><div><h3>Developer &amp; code evaluator</h3><p>OutlierAI / DataAnnotation · C++ &amp; Python</p></div><span class="date">May — Aug 2026</span></div></section>
-
-      <section id="contact" class="contact-section" aria-labelledby="contact-title"><div><h2 id="contact-title">Let’s build something<span class="accent">.</span></h2><p>Interested in embedded, firmware &amp; systems opportunities.</p></div><a class="contact-email" href="mailto:bmajock@gmail.com">bmajock@gmail.com <span aria-hidden="true">↗</span></a></section>
     </main>
-    <footer><span>© <span id="year">2026</span> Majock Bim</span><span class="footer-note">small site. low-level things.</span><a href="#" aria-label="Back to top">↑ top</a></footer>
+
+    <footer id="contact">
+      <nav aria-label="Contact and profiles">
+        <a href="mailto:bmajock@gmail.com" aria-label="Email Majock"><img src="assets/logos/socials/mail.png" width="20" height="20" alt=""></a>
+        <a href="https://www.linkedin.com/in/majockbim/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="assets/logos/socials/in.png" width="20" height="20" alt=""></a>
+        <a href="https://github.com/majockbim" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="assets/logos/socials/git.png" width="20" height="20" alt=""></a>
+        <a href="https://x.com/majockbim" target="_blank" rel="noopener noreferrer" aria-label="X"><img src="assets/logos/socials/X.png" width="20" height="20" alt=""></a>
+      </nav>
+      <span class="copyright">© 2026 Majock Bim</span>
+      <label class="motion-control"><input id="pause-motion" type="checkbox"> Pause animation</label>
+    </footer>
   </div>
 </body>
 </html>
