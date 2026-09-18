@@ -79,7 +79,7 @@ nav a:hover img, nav a:focus-visible img { opacity: 1; }
 
 /* Previews are supplementary; all descriptions and source links stay visible. */
 @media (min-width: 1280px) and (hover: hover) {
-  .row-preview { display: block; position: absolute; width: 250px; left: calc(100% + 25px); top: 50%; transform: translateY(-50%); visibility: hidden; opacity: 0; pointer-events: none; }
+  .row-preview { display: block; position: fixed; width: min(250px, calc(100vw - 48px)); right: max(24px, calc((100vw - 1240px) / 2)); top: 50%; transform: translateY(-50%); visibility: hidden; opacity: 0; pointer-events: none; }
   .row-preview img { width: 100%; border: 1px solid var(--line); border-radius: 3px; background: #000; }
   .row:hover .row-preview, .row:focus-visible .row-preview { visibility: visible; opacity: 1; }
 }

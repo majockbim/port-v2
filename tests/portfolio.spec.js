@@ -2,95 +2,109 @@ const { test, expect } = require('@playwright/test');
 const AxeBuilder = require('@axe-core/playwright').default;
 
 async function expectNoOverflow(page) {
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 }
 
-test('navigation, resume, local assets, and font load without errors', async ({ page, request }) => {
+const projects = {
+  exoskeleton: 'https://github.com/McMaster-Exoskeleton/exoskeleton-embedded',
+  physio: 'https://github.com/majockbim/physio',
+  spectrum: 'https://github.com/majockbim/spectrum',
+  lodestone: 'https://github.com/majockbim/lodestone',
+};
+
+test('profile, resume, assets, and exact reference font load correctly', async ({ page, request }) => {
   const failures = [];
   page.on('pageerror', error => failures.push(error.message));
-  page.on('response', response => {
-    if (response.status() >= 400) failures.push(`${response.status()}: ${response.url()}`);
-  });
+  page.on('response', response => { if (response.status() >= 400) failures.push(response.url()); });
   await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Majock Bim_');
-  await page.getByRole('navigation').getByRole('link', { name: 'work', exact: true }).click();
-  await expect(page).toHaveURL(/#work$/);
-  await page.getByRole('navigation').getByRole('link', { name: 'contact', exact: true }).click();
-  await expect(page).toHaveURL(/#contact$/);
-  const resumePath = await page.getByRole('link', { name: /resume/ }).getAttribute('href');
-  const resume = await request.get(resumePath);
-  expect(resume.status()).toBe(200);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Majock Bim');
+  await expect(page.getByRole('link', { name: 'Email Majock' })).toHaveAttribute('href', 'mailto:bmajock@gmail.com');
+  const resume = await request.get(await page.getByRole('link', { name: /resume/ }).getAttribute('href'));
+  expect(resume.ok()).toBe(true);
   expect((await resume.body()).subarray(0, 5).toString()).toBe('%PDF-');
   const references = await page.locator('[src], link[href]').evaluateAll(elements => elements.map(el => el.getAttribute('src') || el.getAttribute('href')).filter(url => !/^(https?:|mailto:|#)/.test(url)));
   for (const reference of new Set(references)) expect((await request.get(reference)).ok(), reference).toBe(true);
   await page.evaluate(() => document.fonts.ready);
-  expect(await page.evaluate(() => [...document.fonts].some(font => font.family.includes('VT323') && font.status === 'loaded'))).toBe(true);
+  expect(await page.evaluate(() => [...document.fonts].some(font => font.family.includes('Minecraft') && font.status === 'loaded'))).toBe(true);
   expect(failures).toEqual([]);
 });
 
-test('project details support pointer and keyboard interaction', async ({ page, isMobile }) => {
+test('project rows link directly to source and keep descriptions visible', async ({ page }) => {
   await page.goto('/');
-  for (const id of ['exoskeleton', 'physio', 'spectrum', 'lodestone']) {
-    const details = page.locator(`#${id} details`);
-    const summary = details.locator('summary');
-    await expect(details).not.toHaveAttribute('open');
-    if (isMobile) await summary.tap();
-    else {
-      await summary.focus();
-      await page.keyboard.press('Enter');
-    }
-    await expect(details).toHaveAttribute('open', '');
-    await expect(details.locator('.project-detail')).toBeVisible();
-    for (const img of await details.locator('img').all()) {
-      await img.scrollIntoViewIfNeeded();
-      await expect.poll(() => img.evaluate(el => el.complete && el.naturalWidth > 0)).toBe(true);
-    }
-    await expectNoOverflow(page);
-    await summary.click();
-    await expect(details).not.toHaveAttribute('open');
+  for (const [id, url] of Object.entries(projects)) {
+    const row = page.locator(`#${id}`);
+    await expect(row).toHaveAttribute('href', url);
+    await expect(row).toHaveAttribute('rel', 'noopener noreferrer');
+    await expect(row.locator('p')).toBeVisible();
+    expect((await row.boundingBox()).height).toBeGreaterThanOrEqual(44);
   }
+  await expect(page.locator('details')).toHaveCount(0);
 });
 
-test('reflows at narrow, landscape, tablet, and desktop widths', async ({ page }) => {
+test('Spectrum restores its GIF and rainbow focus effect with a pause control', async ({ page }) => {
   await page.goto('/');
-  for (const [width, height] of [[320, 740], [390, 844], [768, 1024], [852, 393], [1440, 900], [1920, 1080]]) {
+  await expect(page.locator('.spectrum-animated img')).toHaveAttribute('src', /spectrum-small\.gif$/);
+  await expect(page.locator('.spectrum-animated')).toBeVisible();
+  await page.keyboard.press('Tab');
+  await page.locator('#spectrum').focus();
+  const name = page.locator('.spectrum-name');
+  expect(await name.evaluate(el => getComputedStyle(el).backgroundImage)).toContain('linear-gradient');
+  expect(await name.evaluate(el => getComputedStyle(el).animationName)).toBe('rainbow-move');
+  await page.getByRole('checkbox', { name: 'Pause animation' }).check();
+  await expect(page.locator('.spectrum-animated')).toBeHidden();
+  await expect(page.locator('.spectrum-still')).toBeVisible();
+  await page.locator('#spectrum').focus();
+  expect(await name.evaluate(el => getComputedStyle(el).animationName)).toBe('none');
+  await page.getByRole('checkbox', { name: 'Pause animation' }).uncheck();
+  await expect(page.locator('.spectrum-animated')).toBeVisible();
+});
+
+test('compact layout and hover previews reflow from phones to desktop', async ({ page, isMobile }) => {
+  await page.goto('/');
+  for (const [width, height] of [[320, 740], [390, 844], [768, 1024], [852, 393], [1280, 900], [1920, 1080]]) {
     await page.setViewportSize({ width, height });
     await expectNoOverflow(page);
-    // Interaction is covered separately; set state directly for the layout sweep.
-    await page.locator('details').evaluateAll(elements => elements.forEach(el => { el.open = true; }));
-    await expectNoOverflow(page);
-    await page.locator('details').evaluateAll(elements => elements.forEach(el => { el.open = false; }));
+    if (!isMobile && width >= 1280) {
+      await page.locator('#spectrum').hover();
+      await expect(page.locator('#spectrum .row-preview')).toBeVisible();
+      expect(await page.locator('.spectrum-name').evaluate(el => getComputedStyle(el).animationName)).toBe('rainbow-move');
+      await expectNoOverflow(page);
+    }
   }
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.evaluate(() => { document.body.style.zoom = '2'; });
   await expectNoOverflow(page);
 });
 
-test('works with JavaScript disabled, reduced motion, and unavailable font', async ({ browser, baseURL }) => {
+test('no JavaScript, reduced motion, and unavailable font remain usable', async ({ browser, baseURL }) => {
   const context = await browser.newContext({ javaScriptEnabled: false, reducedMotion: 'reduce', viewport: { width: 320, height: 740 } });
   const page = await context.newPage();
-  await page.route('**/*.ttf', route => route.abort());
+  const gifRequests = [];
+  page.on('request', request => { if (request.url().endsWith('.gif')) gifRequests.push(request.url()); });
+  await page.route('**/*.otf', route => route.abort());
   await page.goto(baseURL);
-  await page.locator('#physio summary').click();
-  await expect(page.locator('#physio .project-detail')).toBeVisible();
-  await expectNoOverflow(page);
+  await expect(page.locator('#physio')).toBeVisible();
+  await expect(page.locator('.spectrum-still')).toBeVisible();
+  await expect(page.locator('.spectrum-animated')).toBeHidden();
+  expect(gifRequests).toEqual([]);
+  await page.locator('#spectrum').focus();
+  expect(await page.locator('.spectrum-name').evaluate(el => getComputedStyle(el).animationName)).toBe('none');
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
+  await expectNoOverflow(page);
   await expect(page.locator('script')).toHaveCount(0);
   await context.close();
 });
 
-test('keyboard entry and closed/expanded content pass accessibility checks', async ({ page, browserName }) => {
+test('skip link, keyboard focus, and content pass accessibility checks', async ({ page, browserName }) => {
   await page.goto('/');
-  // WebKit's link tabbing follows platform preferences. Verify activation from
-  // explicit focus there, and the first Tab stop in Chromium and Firefox.
+  // WebKit link tabbing depends on the platform's full-keyboard-access setting.
   if (browserName === 'webkit') await page.getByRole('link', { name: 'Skip to content' }).focus();
   else await page.keyboard.press('Tab');
   await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
   await page.keyboard.press('Enter');
-  await expect(page).toHaveURL(/#main$/);
   await expect(page.locator('main')).toBeFocused();
   const scan = () => new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze();
   expect((await scan()).violations).toEqual([]);
-  for (const summary of await page.locator('summary').all()) await summary.click();
+  await page.locator('#spectrum').focus();
   expect((await scan()).violations).toEqual([]);
 });

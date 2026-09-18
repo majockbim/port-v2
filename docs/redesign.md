@@ -2,9 +2,9 @@
 
 ## Goal and direction
 
-Make Majock's embedded software and systems experience understandable in a quick scan, then give technical reviewers enough detail to follow the work. Keep the existing static hosting and custom domain. The final page needs only HTML and CSS.
+Make Majock's embedded software and systems experience understandable in a quick scan, with direct source links for technical reviewers. Keep the existing static hosting and custom domain. The final page needs only HTML and CSS.
 
-Visual direction: preserve the original minimalist 8-bit identity. Dark background, pixel headings, readable monospace body copy, restrained lavender accents, and compact project rows. Keep technical detail optional in native disclosures, including on touch devices. No framework or production build dependency is needed.
+Visual direction: preserve the original minimalist 8-bit identity. Dark background, the exact Minecraft Regular reference font, plain descriptions, and compact rows. Omit the marketing hero, punchlines, numbered sections, boxed icons, and expandable write-ups. Keep Spectrum’s original GIF and rainbow title effect, with keyboard and reduced-motion support. No framework or production build dependency is needed.
 
 ## Content evidence (reviewed September 18, 2026)
 
@@ -26,10 +26,14 @@ Use the supplied resume PDF unchanged as the downloadable resume. Reuse the port
 
 ## Acceptance criteria
 
-- A reviewer can find the work, technical focus, resume, GitHub and email immediately.
+- A reviewer can find the work, resume, GitHub and email immediately.
 - All four supplied projects are represented with accurate status and working source links.
 - Essential content and navigation work without JavaScript.
 - Keyboard focus, reduced motion, small screens and browser zoom are supported.
-- No hover-only content, continuous background animation or third-party location lookup is needed.
+- Essential information must not depend on hover. Supplemental project images may appear on wide-screen hover/focus. No background animation or third-party location lookup is needed.
 - Prioritize phones, tablets, keyboard access, and narrow landscape windows alongside desktop. Keep the visible page concise.
 - Keep CNAME and the production branch intact; push only the feature branch for review.
+
+## Compact revision
+
+The reference font was identified from musnom.com’s public stylesheet and its embedded name table as Minecraft Regular by Jacob Debono / JDGraphics. The initial typography alternatives have been replaced. The page now follows the original profile / currently / previously / projects / contact structure. Full technical detail lives in the linked project repositories.
