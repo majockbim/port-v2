@@ -4,7 +4,7 @@
 
 Make Majock's embedded software and systems experience understandable in a quick scan, then give technical reviewers enough detail to follow the work. Keep the existing static HTML/CSS/JavaScript deployment and custom domain.
 
-Visual direction: an engineering notebook with warm paper, ink typography, orange highlights, fine rules, a signal-path illustration, and real project imagery. No framework or production build dependency is needed.
+Visual direction: preserve the original minimalist 8-bit identity. Dark background, pixel headings, readable monospace body copy, restrained lavender accents, and compact project rows. Keep technical detail optional in native disclosures, including on touch devices. No framework or production build dependency is needed.
 
 ## Content evidence (reviewed September 18, 2026)
 
@@ -30,4 +30,5 @@ Use the supplied resume PDF unchanged as the downloadable resume. Reuse the port
 - Essential content and navigation work without JavaScript.
 - Keyboard focus, reduced motion, small screens and browser zoom are supported.
 - No hover-only content, continuous background animation or third-party location lookup is needed.
+- Prioritize phones, tablets, keyboard access, and narrow landscape windows alongside desktop. Keep the visible page concise.
 - Keep CNAME and the production branch intact; push only the feature branch for review.

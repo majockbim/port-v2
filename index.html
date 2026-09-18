@@ -1,177 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Majock Bim</title>
-    <link rel="icon" type="image/png" href="assets/logos/site/fish.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="css/styling.css">
-    <script src="js/main.js" defer></script>
-    <script src="js/cloudflare.js" defer></script>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="assets/logos/site/punpun.jpg" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c0c0e">
+  <meta name="description" content="Majock Bim — mechatronics at McMaster. Embedded firmware, C++ systems, and projects that connect software to hardware.">
+  <title>Majock Bim — Embedded &amp; Systems</title>
+  <link rel="canonical" href="https://majockbim.com/">
+  <link rel="icon" type="image/png" href="assets/logos/site/fish.png">
+  <link rel="stylesheet" href="css/styling.css">
 </head>
 <body>
-
-<canvas id="binaryCanvas"></canvas>
-
-<div class="side-counter">
-    i started programming<br>
-    <span id="prog-counter">—</span> ago
-</div>
-
-<a href="https://www.pcbway.com/" target="_blank" class="pbw-collab">
-    <div class="pbw-text">sponsored by</div>
-    <img src="assets/physio/sponsor/pbw.png" alt="PBW" class="pbw-img">
-    <svg width="74" height="26" viewBox="0 0 74 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 5,13 C 30,13 30,25 20,25 C 10,25 10,5 20,5 C 30,5 40,13 70,13" stroke="var(--accent)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        <path d="M 64,8 L 71,13 L 64,18" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    </svg>
-</a>
-<div class="container">
-    <header class="h">
-        <img src="assets/logos/site/punpun.jpg" class="thumb2" alt="">
-        <h1>Majock Bim</h1>
-        <p class="handle">@majockbim</p>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="shell">
+    <header class="site-header">
+      <a class="home-link" href="#" aria-label="Majock Bim, home"><img src="assets/logos/site/punpun.jpg" width="32" height="32" alt=""><span>~/majockbim</span></a>
+      <nav aria-label="Main navigation"><a href="#work">work</a><a href="#contact">contact</a><a class="resume-link" href="assets/Majock_Bim_Resume.pdf" target="_blank" rel="noopener noreferrer">resume <span aria-hidden="true">↗</span><span class="sr-only"> (PDF, opens in a new tab)</span></a></nav>
     </header>
 
-    <section>
-        <h2>currently</h2>
-        <a href="https://www.eng.mcmaster.ca/cas/degree-options/mechatronics/" target="_blank" style="text-decoration:none;">
-            <div class="row">
-                <img src="assets/mcmaster/logo/mcmaster.png" class="thumb" alt="">
-                <div class="item-stack">
-                    <div class="item-title">
-                        <div class="desktop-text">McMaster University</div>
-                        <span class="mobile-text">mac tron '29</span>
-                    </div>
-                    <div class="item-desc">studying mechatronics engineering</div>
-                </div>
-                <div class="row-preview">
-                    <img src="assets/mcmaster/preview/maceng.png" alt="">
-                    <div class="below-info">graduating 2029</div>
-                </div>
-            </div>
-        </a>
-        <a href="https://www.macexo.com/" target="_blank" style="text-decoration:none;">
-            <div class="row">
-                <img src="assets/macexo/logo/exo.png" class="thumb" alt="">
-                <div class="item-stack">
-                    <div class="item-title">
-                        <span class="desktop-text">embedded & controls team lead</span>
-                        <span class="mobile-text">E&C team lead</span>
-                    </div>
-                    <div class="item-desc">leading an 8-person team  <span class="company-link">@macexo</span></div>
-                </div>
-                <div class="row-preview">
-                    <img src="assets/macexo/preview/exo.png" alt="">
-                </div>
-            </div>
-        </a>
-    </section>
+    <main id="main">
+      <section class="intro" aria-labelledby="intro-title">
+        <p class="eyebrow"><span class="pixel-dot" aria-hidden="true"></span> embedded / systems / a bit of curiosity</p>
+        <h1 id="intro-title">Majock Bim<span class="cursor" aria-hidden="true">_</span></h1>
+        <p class="intro-copy">I write software that meets the real world.<br>Mechatronics at McMaster. Usually somewhere<br class="desktop-break"> between C++, a microcontroller, and the debugger.</p>
+        <div class="intro-links"><a href="https://github.com/majockbim" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/majockbim/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href="mailto:bmajock@gmail.com">Email <span aria-hidden="true">↗</span></a></div>
+        <div class="bit-art" aria-hidden="true"><span>0001</span><span>1010</span><span>0110</span><span>1101</span></div>
+      </section>
 
-    <section>
-        <h2>previously</h2>
-        <a href="https://www.lahacks.com/" target="_blank" style="text-decoration:none;">
-            <div class="row">
-                <img src="assets/lahacks/logo/la-trans.png" class="thumb" alt="">
-                <div class="item-stack">
-                    <div class="item-title">LA Hacks 2026</div>
-                    <div class="item-desc">built <span><u>physio</u></span></div>
-                </div>
-                <div class="row-preview">
-                    <img src="assets/lahacks/preview/LAHacks.png" alt="">
-                </div>
-            </div>
-        </a>
-        <div class="row">
-            <img id="freelance-logo" src="assets/outlier/logo/outlier.png" class="thumb" alt="">
-            <div class="item-stack">
-                <div class="item-title">
-                    <span class="desktop-text">software developer (freelance)</span>
-                    <span class="mobile-text">freelance swe</span>
-                </div>
-                <div class="item-desc">LLM training & eval. <a href="https://outlier.ai/" target="_blank" class="company-link">@outlier</a>, <a href="https://dataannotation.tech/" target="_blank" class="company-link">@DA</a></div>
-            </div>
-        </div>
-    </section>
+      <section class="now-section" aria-labelledby="now-title">
+        <h2 id="now-title" class="section-label"><span aria-hidden="true">01 /</span> currently</h2>
+        <div class="now-grid"><div class="now-item"><img src="assets/macexo/logo/exo.png" width="28" height="28" alt=""><div><a href="https://www.macexo.com/" target="_blank" rel="noopener noreferrer">Embedded &amp; controls team lead <span aria-hidden="true">↗</span></a><p>McMaster Exoskeleton · leading a team of 8</p></div></div><div class="now-item"><img src="assets/mcmaster/logo/mcmaster.png" width="28" height="28" alt=""><div><span class="now-title">Mechatronics engineering</span><p>McMaster University · class of 2029</p></div></div></div>
+      </section>
 
-    <section style="position: relative;">
-        <h2>Projects</h2>
-        <div style="position: relative;">
-            <a href="https://devpost.com/software/strokr-ai?ref_content=user-portfolio&ref_feature=in_progress" target="_blank" style="text-decoration:none; display: block;">
-                <div class="row physio-row">
-                    <img src="assets/physio/logo/physio.png" class="thumb" alt="">
-                    <div class="item-stack">
-                        <div class="item-title">physio</div>
-                        <div class="item-desc">edge AI-enabled stroke rehab sleeve</div>
-                    </div>
-                    <div class="row-preview">
-                        <img src="assets/physio/preview/physio.png" alt="">
-                    </div>
-                </div>
-            </a>
-        </div>
+      <section id="work" class="work-section" aria-labelledby="work-title">
+        <div class="section-heading"><h2 id="work-title" class="section-label"><span aria-hidden="true">02 /</span> selected work</h2><span class="section-note">close to the metal.</span></div>
+        <article id="exoskeleton" class="project" aria-labelledby="exo-title"><div class="project-icon"><img src="assets/macexo/logo/exo.png" width="38" height="38" alt=""></div><div class="project-main"><div class="project-heading"><h3 id="exo-title"><a href="https://github.com/McMaster-Exoskeleton/exoskeleton-embedded" target="_blank" rel="noopener noreferrer">exoskeleton <span aria-hidden="true">↗</span></a></h3><span class="project-status">team project</span></div><p>Sensor to actuator. Firmware for a lower-limb exoskeleton.</p><p class="project-stack">C / STM32 / CAN / DMA</p></div></article>
+        <article id="physio" class="project" aria-labelledby="physio-title"><div class="project-icon"><img src="assets/physio/logo/physio.png" width="38" height="38" alt=""></div><div class="project-main"><div class="project-heading"><h3 id="physio-title"><a href="https://github.com/majockbim/physio" target="_blank" rel="noopener noreferrer">physio <span aria-hidden="true">↗</span></a></h3><span class="project-status">LA Hacks ’26</span></div><p>A rehab wearable. Two IMUs, BLE, and on-device movement scoring.</p><p class="project-stack">ESP32 / C++ / BLE / Altium</p></div></article>
+        <article id="spectrum" class="project" aria-labelledby="spectrum-title"><div class="project-icon spectrum-icon"><img src="assets/spectrum/logo/term-trans.png" width="38" height="38" alt=""></div><div class="project-main"><div class="project-heading"><h3 id="spectrum-title"><a href="https://github.com/majockbim/spectrum" target="_blank" rel="noopener noreferrer">spectrum <span aria-hidden="true">↗</span></a></h3><span class="project-status">open source</span></div><p>Your system audio, visualized in the terminal.</p><p class="project-stack">C++17 / FFTW3 / WASAPI</p></div></article>
+        <article id="lodestone" class="project" aria-labelledby="lodestone-title"><div class="project-icon"><img src="assets/lodestone/logo/mag-invert-trans.png" width="38" height="38" alt=""></div><div class="project-main"><div class="project-heading"><h3 id="lodestone-title"><a href="https://github.com/majockbim/lodestone" target="_blank" rel="noopener noreferrer">lodestone <span aria-hidden="true">↗</span></a></h3><span class="project-status status-wip">in progress</span></div><p>A magnet on a chair turned into a C++ magnetic-field simulator.</p><p class="project-stack">C++17 / CMake / GoogleTest</p></div></article>
+      </section>
 
-        <a href="https://github.com/majockbim/spectrum" target="_blank" style="text-decoration:none;">
-            <div class="row spectrum-row">
-                <img src="assets/spectrum/logo/spectrum.gif" class="thumb" alt="">
-                <div class="item-stack">
-                    <div class="item-title">spectrum</div>
-                    <div class="item-desc">audio visualization in your terminal</div>
-                </div>
-                <div class="row-preview">
-                    <img src="assets/spectrum/equalizer.png" alt="">
-                </div>
-            </div>
-        </a>
-        <!--
-        <a href="https://github.com/majockbim/robotic-arm-controller" target="_blank" style="text-decoration:none;">
-            <div class="row">
-                <img src="assets/roboticarm/logo/arm.png" class="thumb" alt="">
-                <div class="item-stack">
-                    <div class="item-title">robotic arm</div>
-                    <div class="item-desc">control arm via serial cmds or opencv</div>
-                </div>
-                <div class="row-preview">
-                    <img src="assets/roboticarm/preview/robot2.png" alt="">
-                </div>
-            </div>
-        </a>
-        -->
-        <a href="https://github.com/majockbim/lodestone" target = "_blank" style="text-decoration:none;">
-            <div class="row">
-                <img src="assets/lodestone/logo/mag-invert-trans.png" class="thumb" alt="">
-                <div class="item-stack">
-                    <div class="item-title">lodestone</div>
-                    <div class="item-desc">magnetic physics simulation in C++</div>
-                </div>
-            <div class="soon-label">← in progress</div>
-            </div>
-        </a>
-    </section>
+      <section class="previous-section" aria-labelledby="previous-title"><h2 id="previous-title" class="section-label"><span aria-hidden="true">03 /</span> previously</h2><div class="previous-row"><div><h3>Developer &amp; code evaluator</h3><p>OutlierAI / DataAnnotation · C++ &amp; Python</p></div><span class="date">May — Aug 2026</span></div></section>
 
-    <div class="nav-divider">
-        <nav>
-            <a href="https://github.com/majockbim" target="_blank">
-                <img src="assets/logos/socials/git.png" class="nav-icon" alt="GitHub">
-            </a>
-            <a href="https://www.linkedin.com/in/majockbim/" target="_blank">
-                <img src="assets/logos/socials/in.png" class="nav-icon" alt="LinkedIn">
-            </a>
-            <a href="https://x.com/majockbim" target="_blank">
-                <img src="assets/logos/socials/X.png" class="nav-icon" alt="X">
-            </a>
-            <a href="mailto:bmajock@gmail.com" target="_blank">
-                <img src="assets/logos/socials/mail.png" class="nav-icon" alt="Email">
-            </a>
-        </nav>
-        <span class="copyright desktop-text">© 2026 Majock Bim</span>
-        <span class="copyright mobile-text">© 2026 Mj</span>
-
-    </div>
-</div>
+      <section id="contact" class="contact-section" aria-labelledby="contact-title"><div><h2 id="contact-title">Let’s build something<span class="accent">.</span></h2><p>Interested in embedded, firmware &amp; systems opportunities.</p></div><a class="contact-email" href="mailto:bmajock@gmail.com">bmajock@gmail.com <span aria-hidden="true">↗</span></a></section>
+    </main>
+    <footer><span>© <span id="year">2026</span> Majock Bim</span><span class="footer-note">small site. low-level things.</span><a href="#" aria-label="Back to top">↑ top</a></footer>
+  </div>
 </body>
 </html>
