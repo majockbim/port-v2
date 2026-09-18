@@ -50,10 +50,10 @@ h1 { font: 400 clamp(42px, 6vw, 52px)/1.1 var(--pixel); letter-spacing: .3px; ma
 .intro-links { display: flex; gap: 23px; margin-top: 21px; font-size: 11px; }
 .intro-links a { text-decoration: none; padding-block: 5px; }
 .intro-links span { color: var(--quiet); }
-.bit-art { position: absolute; right: 15px; top: 85px; color: #55505f; font: 400 26px/1.15 var(--pixel); transform: skewY(-8deg); user-select: none; }
+.bit-art { position: absolute; right: 15px; top: 85px; color: #8b8398; font: 400 26px/1.15 var(--pixel); transform: skewY(-8deg); user-select: none; }
 .bit-art span { display: block; letter-spacing: 7px; }
 .bit-art span:nth-child(2) { color: #9e8dc1; padding-left: 13px; }
-.bit-art span:nth-child(3) { color: #767180; }
+.bit-art span:nth-child(3) { color: #928c9c; }
 .section-label { font: 400 18px/1.4 var(--pixel); color: var(--muted); }
 .section-label > span { color: #858090; margin-right: 10px; font-family: var(--mono); font-size: 10px; }
 .now-section { padding-block: 25px 28px; border-block: 1px solid var(--line); }
@@ -112,7 +112,7 @@ footer a { text-decoration: none; padding: 8px 0 8px 8px; }
 @media (min-width: 1600px) { .shell { margin-top: 24px; } }
 @media (max-width: 700px) {
   .shell { width: calc(100% - 48px); }
-  .bit-art { right: 0; font-size: 22px; top: 102px; opacity: .7; }
+  .bit-art { right: 0; font-size: 22px; top: 102px; }
   .bit-art span { letter-spacing: 4px; }
   .intro-copy { max-width: 390px; font-size: 12px; }
   .now-grid { grid-template-columns: 1fr; gap: 17px; }
