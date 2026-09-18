@@ -1,0 +1,15 @@
+{
+  "name": "majockbim-portfolio",
+  "private": true,
+  "version": "3.0.0",
+  "description": "A minimal static portfolio. Node dependencies are for development checks only.",
+  "scripts": {
+    "start": "python scripts/serve.py",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0"
+  }
+}

@@ -2,7 +2,7 @@
 
 ## Goal and direction
 
-Make Majock's embedded software and systems experience understandable in a quick scan, then give technical reviewers enough detail to follow the work. Keep the existing static HTML/CSS/JavaScript deployment and custom domain.
+Make Majock's embedded software and systems experience understandable in a quick scan, then give technical reviewers enough detail to follow the work. Keep the existing static hosting and custom domain. The final page needs only HTML and CSS.
 
 Visual direction: preserve the original minimalist 8-bit identity. Dark background, pixel headings, readable monospace body copy, restrained lavender accents, and compact project rows. Keep technical detail optional in native disclosures, including on touch devices. No framework or production build dependency is needed.
 
@@ -20,8 +20,9 @@ Use the supplied resume PDF unchanged as the downloadable resume. Reuse the port
 
 1. Document the redesign and content evidence.
 2. Rebuild the page around an accessible, responsive visual foundation and project summaries.
-3. Add technical project details, resume access and light progressive enhancement.
-4. Verify behavior, accessibility, links and responsive layouts; document maintenance and checks.
+3. Add optional technical project details and touch-friendly image previews.
+4. Refine the typography to the lighter VT323 face and optimize the previews for mobile connections.
+5. Verify behavior, accessibility, links and responsive layouts; document maintenance and checks.
 
 ## Acceptance criteria
 
