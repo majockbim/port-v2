@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Press Start 2P";
-  src: url("../assets/fonts/press-start-2p.ttf") format("truetype");
+  font-family: "VT323";
+  src: url("../assets/fonts/vt323.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -16,7 +16,7 @@
   --accent: #bca5f9;
   --line: #29292f;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  --pixel: "Press Start 2P", var(--mono);
+  --pixel: "VT323", var(--mono);
 }
 
 * { box-sizing: border-box; }
@@ -44,17 +44,17 @@ nav .resume-link { color: var(--accent); }
 .intro { position: relative; padding-block: 49px 41px; }
 .eyebrow { color: var(--quiet); font-size: 10px; letter-spacing: .01em; display: flex; gap: 9px; align-items: center; }
 .pixel-dot { display: inline-block; width: 5px; height: 5px; flex-shrink: 0; background: var(--accent); box-shadow: 0 0 10px #bca5f928; }
-h1 { font: 400 clamp(22px, 3.4vw, 30px)/1.5 var(--pixel); letter-spacing: -1.2px; margin-block: 20px 17px; }
+h1 { font: 400 clamp(42px, 6vw, 52px)/1.1 var(--pixel); letter-spacing: .3px; margin-block: 20px 17px; }
 .cursor { color: var(--accent); margin-left: 6px; }
 .intro-copy { color: var(--muted); font-size: 13px; line-height: 1.85; }
 .intro-links { display: flex; gap: 23px; margin-top: 21px; font-size: 11px; }
 .intro-links a { text-decoration: none; padding-block: 5px; }
 .intro-links span { color: var(--quiet); }
-.bit-art { position: absolute; right: 15px; top: 85px; color: #55505f; font: 400 17px/1.8 var(--pixel); transform: skewY(-8deg); user-select: none; }
+.bit-art { position: absolute; right: 15px; top: 85px; color: #55505f; font: 400 26px/1.15 var(--pixel); transform: skewY(-8deg); user-select: none; }
 .bit-art span { display: block; letter-spacing: 7px; }
 .bit-art span:nth-child(2) { color: #9e8dc1; padding-left: 13px; }
 .bit-art span:nth-child(3) { color: #767180; }
-.section-label { font: 400 9px/1.8 var(--pixel); color: var(--muted); }
+.section-label { font: 400 18px/1.4 var(--pixel); color: var(--muted); }
 .section-label > span { color: #858090; margin-right: 10px; font-family: var(--mono); font-size: 10px; }
 .now-section { padding-block: 25px 28px; border-block: 1px solid var(--line); }
 .now-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 23px; margin-top: 21px; }
@@ -71,7 +71,7 @@ h1 { font: 400 clamp(22px, 3.4vw, 30px)/1.5 var(--pixel); letter-spacing: -1.2px
 .project-icon img { width: 100%; max-height: 29px; object-fit: contain; }
 .project-main { flex: 1; min-width: 0; }
 .project-heading { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
-.project h3 { font: 400 11px/1.8 var(--pixel); }
+.project h3 { font: 400 23px/1.2 var(--pixel); }
 .project h3 a { text-decoration: none; display: inline-block; }
 .project h3 a > span { font-family: var(--mono); color: var(--quiet); font-size: 15px; margin-left: 6px; }
 .project-status { font-size: 9px; color: var(--quiet); line-height: 1.5; }
@@ -100,7 +100,7 @@ details[open] .detail-close { display: inline; }
 .previous-row p, .date { font-size: 10px; color: var(--quiet); }
 .date { white-space: nowrap; }
 .contact-section { padding-block: 36px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
-.contact-section h2 { font: 400 10px/1.9 var(--pixel); }
+.contact-section h2 { font: 400 25px/1.2 var(--pixel); }
 .accent { color: var(--accent); }
 .contact-section p { margin-top: 11px; color: var(--quiet); font-size: 10px; }
 .contact-email { color: var(--accent); font-size: 12px; white-space: nowrap; text-decoration: none; padding-block: 10px; }
@@ -112,12 +112,12 @@ footer a { text-decoration: none; padding: 8px 0 8px 8px; }
 @media (min-width: 1600px) { .shell { margin-top: 24px; } }
 @media (max-width: 700px) {
   .shell { width: calc(100% - 48px); }
-  .bit-art { right: 0; font-size: 13px; top: 102px; opacity: .7; }
+  .bit-art { right: 0; font-size: 22px; top: 102px; opacity: .7; }
   .bit-art span { letter-spacing: 4px; }
   .intro-copy { max-width: 390px; font-size: 12px; }
   .now-grid { grid-template-columns: 1fr; gap: 17px; }
   .contact-section { align-items: flex-start; flex-direction: column; gap: 10px; }
-  .contact-section h2 { font-size: 11px; }
+  .contact-section h2 { font-size: 25px; }
   .contact-email { font-size: 13px; }
 }
 @media (max-width: 520px) {
@@ -129,7 +129,7 @@ footer a { text-decoration: none; padding: 8px 0 8px 8px; }
   nav a { min-height: 44px; display: inline-flex; align-items: center; gap: 4px; }
   .intro { padding-block: 34px 29px; }
   .eyebrow { font-size: 9px; }
-  h1 { font-size: clamp(20px, 5.4vw, 28px); margin-block: 21px 17px; letter-spacing: -.7px; }
+  h1 { font-size: clamp(38px, 10vw, 48px); margin-block: 21px 17px; letter-spacing: .2px; }
   .intro-copy { font-size: 12px; max-width: 100%; }
   .desktop-break { display: none; }
   .bit-art { display: none; }
@@ -141,11 +141,11 @@ footer a { text-decoration: none; padding: 8px 0 8px 8px; }
   .now-item p { font-size: 10px; }
   .section-heading { align-items: baseline; }
   .section-note { font-size: 9px; }
-  .section-label { font-size: 8px; }
+  .section-label { font-size: 17px; }
   .section-label > span { margin-right: 4px; }
   .project { gap: 13px; padding-block: 24px; }
   .project-icon { flex-basis: 34px; width: 34px; height: 34px; padding: 6px; }
-  .project h3 { font-size: 10px; }
+  .project h3 { font-size: 22px; }
   .project h3 a { min-height: 32px; display: inline-flex; align-items: center; }
   summary { min-height: 44px; font-size: 11px; }
   .project-detail { padding-top: 6px; }
@@ -156,7 +156,7 @@ footer a { text-decoration: none; padding: 8px 0 8px 8px; }
   .project-main > .project-stack { font-size: 10px; }
   .previous-row { flex-direction: column; gap: 7px; }
   .contact-section { padding-block: 30px; }
-  .contact-section h2 { font-size: 10px; }
+  .contact-section h2 { font-size: 24px; }
   .contact-section p { font-size: 11px; }
   .footer-note { display: none; }
 }
@@ -166,7 +166,7 @@ footer a { text-decoration: none; padding: 8px 0 8px 8px; }
   .eyebrow { font-size: 8px; }
   .section-note { display: none; }
   .project-heading { flex-direction: column; }
-  .contact-section h2 { font-size: 9px; }
+  .contact-section h2 { font-size: 22px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 @media print {
